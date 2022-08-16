@@ -1,5 +1,6 @@
 import { HttpOptions, IHttpOptions } from '../types/http-types';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { SnotifyService } from './bgs-snotify.service';
 import { UserService } from './user.service';
 import { Injectable } from "@angular/core";
@@ -49,7 +50,12 @@ export class HttpService {
     private getUrl(urlPart: string): string {
         if (urlPart[0] === '/') urlPart = urlPart.slice(1)
 
-        return 'http://localhost:3000/api/' + urlPart
+        if (environment.production) {
+            return '/api/' + urlPart
+        }
+        else {
+            return 'http://localhost:3000/api/' + urlPart
+        }
     }
 
     private makeRequest(observable: Observable<any>): Promise<any> {
