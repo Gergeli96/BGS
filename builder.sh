@@ -12,6 +12,6 @@ npm install
 
 npm run build
 
-cd ../bgs-backend/dist
+# cd ../bgs-backend/dist
 
 # node main.js
