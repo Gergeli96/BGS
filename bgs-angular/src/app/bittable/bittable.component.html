@@ -1,0 +1,19 @@
+<table class="table table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th *ngFor="let column of _columns" [style.width]="column.width">{{column.header}}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="text-center" *ngIf="!_tabledata || _tabledata.length < 1">
+            <td colspan="100">
+                <h5>Nincs megjeleníthető adat!</h5>
+            </td>
+        </tr>
+
+        <tr class="cursor-pointer" *ngFor="let row of _tabledata" (click)="onRowClick(row)">
+            <td *ngFor="let column of _columns; let i = index" [column]="column" [row]="row" renderer (click)="onCellClick($event, column, row)"></td>
+        </tr>
+    </tbody>
+</table>

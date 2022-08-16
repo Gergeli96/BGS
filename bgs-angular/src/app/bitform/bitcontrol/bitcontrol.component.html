@@ -1,0 +1,24 @@
+<ng-container  [ngSwitch]="control.type">
+    <select *ngSwitchCase="bittypes.select" class="form-control" [(ngModel)]="control._value">
+        <option *ngFor="let opt of control.options" [value]="opt.value">{{opt.name}}</option>
+    </select>
+
+    <textarea *ngSwitchCase="bittypes.textarea" class="form-control" [(ngModel)]="control._value"></textarea>
+
+    <input *ngSwitchCase="bittypes.checkbox" type="checkbox" class="form-check-input" [(ngModel)]="control._value">
+
+    <input *ngSwitchCase="bittypes.number" type="number" class="form-control" [(ngModel)]="control._value">
+
+    <!-- <input *ngSwitchCase="bittypes.longdate" type="date" class="form-control" [(ngModel)]="control._value"> -->
+
+    <div *ngSwitchCase="bittypes.longdate" class="input-group longdatepicker-input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateValue" (ngModelChange)="onDateValueChange($event)" ngbDatepicker #d="ngbDatepicker">
+        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <i class="bi bi-calendar3"></i>
+        </button>
+    </div>
+    
+    <input *ngSwitchCase="bittypes.file" type="file" multiple [(ngModel)]="fileModelValue" #fielinput (ngModelChange)="onFileSelect(fielinput.files)"/>
+
+    <input *ngSwitchDefault type="text" class="form-control" [(ngModel)]="control._value">
+</ng-container>

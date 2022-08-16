@@ -1,0 +1,26 @@
+<app-navbar [navitems]="navItems"></app-navbar>
+
+<div class="galeries-container d-flex flex-column align-items-center">
+
+    <div class="card mb-3" *ngFor="let galery of galeries">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <img src="{{galery.files[0].fileid | driveImg}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex flex-column justify-content-between h-100">
+                    <div class="d-flex flex-column p-3 pb-0">
+                        <h5 class="card-title text-center">{{galery.name}}</h5>
+
+                        <p class="card-text">{{galery.description}}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-center pt-2 pb-2">
+                        <button class="btn btn-dark" routerLink="/galeria/{{galery.id}}">Megnyitás</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+.galeries-container {
+    flex-direction: column;
+    display: flex;
+    padding: 2rem;
+
+    .galerie {
+        margin-bottom: 3rem;
+
+        &:last-child {
+            margin-bottom: unset;
+        }
+
+        .preview {
+            padding-bottom: 1rem;
+            display: flex;
+            
+            .image-preview {
+                width: -webkit-fill-available;
+                height: 40rem;
+                max-height: 50vh;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% auto;
+                border: 1px dashed #333;
+            }
+
+            .actions {
+                width: 10rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

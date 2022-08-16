@@ -1,0 +1,37 @@
+.sidebar {
+    background-color: dodgerblue;
+    height: 100%;
+
+    ul.nav {
+        li.nav-item {
+            
+            border-radius: 5px;
+
+            a {
+                font-weight: 500;
+                color: #fff;
+            }
+
+            a.active {
+                background-color: #fff;
+                color: dodgerblue;
+            }
+        }
+    }
+
+    .dropdown {
+        .bi-person-fill {
+            padding-right: 0.5em;
+            font-size: 1.5em;
+        }
+
+        #userdropdown {
+            strong {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 12rem;
+            }
+        }
+    }
+}

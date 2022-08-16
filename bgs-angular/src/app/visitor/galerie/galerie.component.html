@@ -1,0 +1,23 @@
+<div class="galerie-container">
+    <app-navbar [navitems]="navItems"></app-navbar>
+
+    <div class="col-12">
+        <h2 class="text-center pb-1">{{gallery?.name}}</h2>
+        <p class="text-center">{{gallery?.description}}</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="img-container col-4" *ngFor="let file of gallery?.files; let i = index">
+                <img src="{{file.fileid | driveImg}}" alt="file" #imgE [attr.index]="i" (click)="zoomInOnImage(imgE)">
+            </div>
+        </div>
+    </div>
+
+    <div class="chevron-container left" (click)="step(-1)">
+        <i class="bi bi-chevron-bar-left"></i>
+    </div>
+    <div class="chevron-container right" (click)="step(1)">
+        <i class="bi bi-chevron-bar-right"></i>
+    </div>
+</div>

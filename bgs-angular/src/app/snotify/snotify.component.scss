@@ -1,0 +1,57 @@
+.snotify-container {
+    max-height: calc(100vw - 2rem);
+    flex-direction: column;
+    position: fixed;
+    padding: 1rem;
+    display: flex;
+    z-index: 999;
+    right: 0;
+    top: 0;
+
+    .snotify-card {
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        color: #fff;
+        width: 19rem;
+
+        &.success {
+            background-color: #4caf50;
+        }
+
+        &.danger {
+            background-color: #f44336;
+        }
+
+        &.async {
+            background-color: #1e88e5;
+        }
+
+        h4 {
+            margin-bottom: unset;
+            padding-right: 1rem;
+        }
+
+        i {
+            font-size: 2.5rem;
+
+            &.bi-arrow-clockwise {
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                animation-duration: 5000ms;
+                animation-name: spin;
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

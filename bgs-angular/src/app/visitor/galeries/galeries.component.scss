@@ -1,0 +1,16 @@
+.galeries-container {
+    height: calc(100vh - (1rem + 56px));
+    width: calc(100vw - 1rem);
+    padding: 0.5rem;
+    overflow: auto;
+
+    .card {
+        max-width: 80vw;
+
+        img {
+            padding-bottom: unset;
+            padding-top: unset;
+            width: unset;
+        }
+    }
+}

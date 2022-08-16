@@ -1,0 +1,16 @@
+<div class="galeries-container">
+
+    <div class="galerie" *ngFor="let galerie of galeries">
+        <div class="preview">
+            <div class="image-preview"[style.background-image]="'url(' + galerie.imgsrc + ')'"></div>
+            
+            <div class="actions">
+                <button class="btn btn-danger" (click)="delete(galerie)"><i class="bi bi-trash"></i> Törlés</button>
+            </div>
+        </div>
+
+        <h2 class="text-center">{{galerie.title}}</h2>
+        <h4 class="text-center">{{galerie.content}}</h4>
+    </div>
+
+</div>

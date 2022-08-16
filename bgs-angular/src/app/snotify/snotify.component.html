@@ -1,0 +1,9 @@
+<div class="snotify-container">
+
+    <div *ngFor="let card of snotify.cards" class="snotify-card {{card.type}}" (click)="snotify.deleteSnoty(card)">
+        <h4>{{card.message}}</h4>
+        
+        <i [class]="card.icon"></i>
+    </div>
+
+</div>

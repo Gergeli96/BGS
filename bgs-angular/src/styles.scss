@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~bootstrap/scss/bootstrap.scss';
+
+
+@import './my-styles/bootstrap-extension.scss';
+@import './my-styles/common-styles.scss';
+// @import './styles/bgs-colors.scss';
+
+body {
+    background: linear-gradient(45deg, rgba(236,236,236,1) 0%, rgba(233,233,233,1) 35%, rgba(221,221,221,1) 100%);
+}
+
+nav {
+    background-color: #967238;
+}
+
+.card {
+    align-items: center;
+
+    img {
+        padding-bottom: 2rem;
+        padding-top: 1rem;
+        width: 50%;
+    }
+
+    .card-body {
+        .card-title {
+            text-align: center;
+        }
+    }
+}

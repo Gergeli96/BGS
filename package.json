@@ -1,0 +1,14 @@
+{
+  "name": "full-deploy-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd bgs-backend & npm run build & cd .. & cd bgs-angular & npm run build",
+    "start": "cd bgs-backend/dist & node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
