@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd bgs-backend & npm i & npm run build & cd .. & cd bgs-angular & npm i & npm run build",
-    "start": "cd bgs-backend & cd dist & node main.js"
+    "build": "",
+    "start": "",
+    "dockerbuild": "docker build -t bgs:1.0 ."
   },
   "keywords": [],
   "author": "",
