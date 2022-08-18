@@ -1,7 +1,7 @@
 import { RouterHelperService } from 'src/app/services/router-helper.service';
+import { BitType, IBitControl } from 'src/app/bitform/gitform-types';
 import { BitformComponent } from 'src/app/bitform/bitform.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BitType, IBitControl } from 'src/app/bitform/gitform-types';
 import { HttpService } from 'src/app/services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProject } from 'src/app/types/project-types';
@@ -48,12 +48,14 @@ export class ProjectFormComponent implements OnInit {
 
         if (this.type == FormType.Edit) {
             body.id = this.projectId
-            this.http.put('projects/update', body)
+            this.form.submit(this.http.put('projects/update', body))
                 .then(() => this.navigateToproject(this.projectId))
+                .catch(error => { })
         }
         else {
-            this.http.post<IProject>('projects/create', body)
+            this.form.submit(this.http.post<IProject>('projects/create', body))
                 .then(response => this.navigateToproject(response.id))
+                .catch(error => { })
         }
     }
 

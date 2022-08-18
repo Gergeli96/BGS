@@ -1,5 +1,5 @@
 import { HttpOptions, IHttpOptions } from '../types/http-types';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SnotifyService } from './bgs-snotify.service';
 import { UserService } from './user.service';
@@ -62,7 +62,7 @@ export class HttpService {
         return new Promise((resolve, reject) => {
             observable.subscribe(
                 (response: HttpResponse<any>) => resolve(response?.body),
-                error => reject(error)
+                (error: HttpErrorResponse) => reject(error.error)
             )
         })
     }

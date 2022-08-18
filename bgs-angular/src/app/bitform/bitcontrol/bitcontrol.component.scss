@@ -1,0 +1,10 @@
+.biterror-container {
+    flex-direction: column;
+    padding-top: 0.5em;
+    display: flex;
+
+    p {
+        text-align: start;
+        color: red;
+    }
+}

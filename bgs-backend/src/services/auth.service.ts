@@ -1,6 +1,7 @@
 import { IRegistrationStatus, IWhoAmI, JwtPayload } from "src/general-types/auth-types";
+import { RegistrationValidator } from "src/validators/registrationValidator";
 import { UnathorizedException } from "src/exceptions/unatorized.exception";
-import { LoginDto, UserDto } from "src/dto/user.dto";
+import { LoginDto, UserDto, UserRegisterDto } from "src/dto/user.dto";
 import { UserService } from "./user.service";
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
@@ -19,11 +20,13 @@ export class AuthService {
     ) { }
 
 
-    public async register(userDto: UserDto): Promise<IRegistrationStatus> {
+    public async register(userRegisterDto: UserRegisterDto): Promise<IRegistrationStatus> {
         let status: IRegistrationStatus = {success: true}
 
+        new RegistrationValidator(userRegisterDto).validate()
+
         try {
-            await this.userService.create(userDto)
+           await  this.userService.create(userRegisterDto)
         } catch (err) {
             status.success = false    
         }

@@ -1,5 +1,8 @@
+import { BitformComponent } from 'src/app/bitform/bitform.component';
+import { BitType, IBitControl } from 'src/app/bitform/gitform-types';
 import { AuthService } from 'src/app/services/auth.service';
-import { Component } from '@angular/core';
+import { ILoginForm } from 'src/app/types/user-types';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +11,11 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-    public authData = {
-        password: '',
-        email: ''
-    }
+    @ViewChild(BitformComponent, {static: true}) form: BitformComponent<ILoginForm>
+    public controls: IBitControl<ILoginForm>[] = [
+        {label: 'Felhasználónév', name: 'username'},
+        {label: 'Jelszó', name: 'password', type: BitType.password}
+    ]
 
     constructor(
         private auth: AuthService,
@@ -21,18 +25,13 @@ export class LoginComponent {
 
     public login(event: Event): void {
         event.preventDefault()
+        const loginData = this.form.value
         
-        this.auth.login(this.authData.email, this.authData.password)
+        this.form.submit(this.auth.login(loginData.username, loginData.password))
             .then(response => {
-                    this.authData.password = ''
-                    this.authData.email = ''
-                    this.router.navigateByUrl('admin/galeryupload')
-                })
-                .catch(error => { })
-    }
-
-    public register(event: Event): void {
-        event.preventDefault()
-        // this.supabase.signUp(this.authData.email, this.authData.password)
+                this.form.empty()
+                this.router.navigateByUrl('admin/galeryupload')
+            })
+            .catch(error => { })
     }
 }

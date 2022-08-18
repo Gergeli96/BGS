@@ -5,7 +5,8 @@ export enum BitType {
     select,
     file,
     number,
-    longdate
+    longdate,
+    password
 }
 
 export interface IDatePickerValue {
@@ -31,11 +32,12 @@ export interface IBitControl<T = any> {
 
 export class BitControl<T = any> {
     private subscriptions: IBitControlValueChangeSubscription[] = [ ]
+    public options: ISelectOption[]
+    public errors: string[] = [ ]
     public label: string
     public name: keyof T
-    public _value: any
     public type: BitType
-    public options: ISelectOption[]
+    public _value: any
 
     constructor(private model: IBitControl<T>) {
         this.label = model.label
@@ -88,5 +90,10 @@ export class BitControl<T = any> {
 
     public subscribeToValueChange(subcription: IBitControlValueChangeSubscription): void {
         this.subscriptions.push(subcription)
+    }
+
+    public setErrors(errors: string[]): void {
+        if (!Array.isArray(errors)) errors = [ ]
+        this.errors = errors
     }
 }

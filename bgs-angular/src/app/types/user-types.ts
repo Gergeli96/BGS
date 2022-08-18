@@ -11,3 +11,13 @@ export interface IUser {
     password: string
     email: string
 }
+
+export interface ILoginForm {
+    username: string
+    password: string
+}
+
+export interface IRegistrationForm extends IUser {
+    password2: string
+    key: string
+}

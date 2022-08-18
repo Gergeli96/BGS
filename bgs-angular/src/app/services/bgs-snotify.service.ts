@@ -67,7 +67,7 @@ export class SnotifyService {
                 })
                 .catch(error => {
                     event.icon = this.getIconByEventType(SnotifyType.danger)
-                    event.message = config?.errorMessage ?? 'Hiba!'
+                    event.message = config?.errorMessage ?? (error.message ?? 'Hiba!')
                     event.type = SnotifyType.danger
                     reject(error)
                 })

@@ -37,7 +37,7 @@ export class GaleryUploadComponent {
             formData.append('files', formValue.files.item(i) as Blob)
         }
 
-        this.http.post('galeries/upload', formData)
+        this.form.submit(this.http.post('galeries/upload', formData))
             .then(response => this.form.empty())
             .catch(error => { })
     }

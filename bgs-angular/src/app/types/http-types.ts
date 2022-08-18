@@ -1,5 +1,11 @@
 import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
 
+export interface IHttpErrorResponse {
+    errors?: {[key: string]: string[]}
+    message: string
+    status: number
+}
+
 export interface IHttpOptions {
     headers?: HttpHeaders | {
         [header: string]: string | string[];

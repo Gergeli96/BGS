@@ -1,3 +1,4 @@
+import { DirectivesModule } from '../directives/directives.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { BitformComponent } from './bitform.component';
 
 @NgModule({
     imports: [
+        DirectivesModule,
         CommonModule,
         FormsModule,
         NgbModule

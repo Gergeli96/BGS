@@ -1,4 +1,5 @@
 import { BitControl, IBitControl } from './gitform-types';
+import { IHttpErrorResponse } from '../types/http-types';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -41,7 +42,19 @@ export class BitformComponent<T = any> {
         return new Promise((resolve, reject) => {
             promise
                 .then(response => resolve(response))
-                .catch(error => reject(error))
+                .catch((error: IHttpErrorResponse) => {
+                    console.log(error)
+                    if (error.errors) {
+                        const errors = error.errors as {[key: string]: string[]}
+                        console.log(errors)
+                        this.controls.forEach(control => {
+                            console.log(errors[control.name as string])
+                            if (errors[control.name as string]) control.setErrors(errors[control.name as string])
+                        })
+                    }
+
+                    reject(error)
+                })
         })
     }
 }

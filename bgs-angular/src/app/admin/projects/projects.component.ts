@@ -24,6 +24,7 @@ export class ProjectsComponent implements OnInit {
 
     ngOnInit(): void {
         this.table.tableFetch(() => this.http.get('projects'))
+            .catch(error => { })
     }
 
 

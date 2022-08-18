@@ -5,6 +5,7 @@ import { LoginDto, UserDto } from "src/dto/user.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
+import * as bcrypt from "bcrypt"
 
 @Injectable()
 export class UserService {
@@ -22,8 +23,8 @@ export class UserService {
         return await this.userRepository.findOne({where: {username: username}})
     }
 
-    public async findByLogin({ username, password }: LoginDto): Promise<UserEntity> {    
-        const user = await this.userRepository.findOne({ where: { username } })
+    public async findByLogin({ username, password }: LoginDto): Promise<UserEntity> {
+        const user = await this.userRepository.findOne({ where: { username: username } })
         
         if (!user) {
             throw new UnathorizedException()
@@ -32,7 +33,7 @@ export class UserService {
         const areEqual = await this.comparePasswords(user.password, password)
         
         if (!areEqual) {
-            throw new UnathorizedException()   
+            throw new UnathorizedException('Hibás bejelentkezési adatok!')   
         }
         
         return user 
@@ -50,9 +51,7 @@ export class UserService {
         return await this.userRepository.save(user)  
     }
 
-
-
-    private comparePasswords(userPassport: string, loginPassport: string): boolean {
-        return true
+    private async comparePasswords(userPassport: string, loginPassport: string): Promise<boolean> {
+        return await bcrypt.compare(loginPassport, userPassport)
     }
 }

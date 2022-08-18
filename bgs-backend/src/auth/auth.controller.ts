@@ -1,9 +1,8 @@
 import { IRegistrationStatus, IWhoAmI } from 'src/general-types/auth-types';
 import { BadRequest } from 'src/exceptions/badrequest.exception';
-import { Body, Controller, Get, Header, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { LoginDto, UserRegisterDto } from 'src/dto/user.dto';
 import { AuthService } from 'src/services/auth.service';
-import { LoginDto, UserDto } from 'src/dto/user.dto';
-import { User } from 'src/decorators/user.decorator';
 import { Headers } from '@nestjs/common';
 
 @Controller('api/auth')
@@ -20,8 +19,8 @@ export class AuthController {
     }
 
     @Post('register')  
-    public async register(@Body() createUserDto: UserDto): Promise<IRegistrationStatus> {    
-        const result: IRegistrationStatus = await this.authService.register(createUserDto)
+    public async register(@Body() userRegisterDto: UserRegisterDto): Promise<IRegistrationStatus> {    
+        const result: IRegistrationStatus = await this.authService.register(userRegisterDto)
 
         if (!result.success) {
             throw new BadRequest()
