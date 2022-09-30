@@ -1,3 +1,4 @@
+import { CalendarModule } from './calendar/calendar.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ function loadUser(auth: AuthService) {
     imports: [
         AppRoutingModule,
         HttpClientModule,
+        CalendarModule,
         BrowserModule,
         ModalModule,
         NgbModule

@@ -1,4 +1,8 @@
+import { WebshopElementGroupEntity } from './entities/webshop-element-group.entity';
+import { WebshopElementEntity } from './entities/webshop-element.entity';
+import { FurnitureCategoryEntity } from './entities/furniture-category';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { WebshopFileEntity } from './entities/webshop-file.entity';
 import { GaleryFileEntity } from './entities/galerie-files.entity';
 import { ConfigModule, registerAs } from '@nestjs/config';
 import { ProjectEntity } from './entities/project.entity';
@@ -23,7 +27,9 @@ const dbConnection = (): TypeOrmModuleOptions => {
         username: envConfig.username,
         password: envConfig.password,
         database: envConfig.database,
-        entities: [ProjectEntity, BillEntity, NoteEntity, UserEntity, GaleryFileEntity, GaleryEntity],
+        entities: [ProjectEntity, BillEntity, NoteEntity, UserEntity, GaleryFileEntity,
+            GaleryEntity, FurnitureCategoryEntity, WebshopElementGroupEntity, WebshopElementEntity,
+            WebshopFileEntity],
         synchronize: true
     }
 }

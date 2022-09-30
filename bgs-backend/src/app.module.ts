@@ -1,5 +1,6 @@
 import { ProjectsModule } from './projects/projects.module';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { WebshopModule } from './webshop/webshop.module';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
 
@@ -14,6 +15,7 @@ import { join } from 'path';
 @Module({
     imports: [
         ProjectsModule,
+        WebshopModule,
         DbModule,
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'dist/frontend')

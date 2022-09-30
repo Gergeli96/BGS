@@ -1,0 +1,17 @@
+.form-container-element {
+    // border-bottom: 1px solid #444;
+    flex-direction: column;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    display: flex;
+
+    .header-container {
+        padding-bottom: 1em;
+    }
+
+    .form-container {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+    }
+}

@@ -1,0 +1,7 @@
+<ul class="list-group">
+    <li class="list-group-item cursor-pointer">Összes</li>
+
+    <ng-container *ngFor="let category of categories">
+        <li class="list-group-item cursor-pointer">{{category.name}}</li>
+    </ng-container>
+</ul>

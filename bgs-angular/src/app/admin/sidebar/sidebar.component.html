@@ -1,4 +1,55 @@
-<div class="sidebar d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+<div class="admin-sidebar" #sidebarElement>
+    <div class="closer">
+        <i class="bi bi-chevron-bar-left" (click)="toggle()"></i>
+        <i class="bi bi-chevron-bar-right" (click)="toggle()"></i>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center company-logo-container">
+        <img routerLink="/" class="d-block cursor-pointer mx-auto mb-4" src="assets/bgs-transparent.png" alt="" height="57">
+    </div>
+
+    <div class="menu-items">
+        <ul class="menu-item-list">
+            <div class="menu-item-container" *ngFor="let item of menuItems">
+                <li [attr.route]="item.route" class="menu-item" #menuitemElement (click)="navigate(item, menuitemElement)">
+                    <div class="name-container">
+                        <i [class]="item.icon"></i>
+                        <span class="menu-item-name">{{item.name}}</span>
+                    </div>
+    
+                    <div class="submenu-icon-container">
+                        <ng-container *ngIf="item.submenu.length">
+                            <i class="bi bi-caret-left-fill"></i>
+                            <i class="bi bi-caret-down-fill"></i>
+                        </ng-container>
+                    </div>
+                </li>
+
+                <ul class="submenu-item">
+                    <li [attr.route]="subitem.route" [attr.submenu]="true" class="menu-item" *ngFor="let subitem of item.submenu" (click)="navigate(subitem, menuitemElement)">
+                        <i [class]="subitem.icon"></i>
+                        <span class="menu-item-name">{{subitem.name}}</span>
+                    </li>
+                </ul>
+            </div>
+        </ul>
+    </div>
+
+    <div class="sidebar-footer">
+        <button class="btn btn-success" routerLink="/admin/project/create">
+            <i class="bi bi-plus-square"></i><span>Új projekt</span>
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="sidebar d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
     <div class="d-flex justify-content-center align-items-center">
         <img routerLink="/" class="d-block cursor-pointer mx-auto mb-4" src="assets/bgs-transparent.png" alt="" height="57">
     </div>
@@ -40,9 +91,6 @@
             </a>
 
             <ul ngbDropdownMenu aria-labelledby="userdropdown" class="text-small shadow">
-                <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li> -->
                 <li>
                     <hr class="dropdown-divider">
                 </li>
@@ -50,4 +98,4 @@
             </ul>
         </div>
     </div>   
-</div>
+</div> -->

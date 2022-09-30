@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { BitcontrolComponent } from './bitcontrol/bitcontrol.component';
 import { BitformComponent } from './bitform.component';
+import { FileInputComponent } from './file-input/file-input.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BitformComponent } from './bitform.component';
     ],
     declarations: [
         BitcontrolComponent,
-        BitformComponent
+        BitformComponent,
+        FileInputComponent
     ],
     exports: [
         BitformComponent

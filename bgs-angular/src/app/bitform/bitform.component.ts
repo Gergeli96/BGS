@@ -34,6 +34,10 @@ export class BitformComponent<T = any> {
         this.controls.forEach(control => control.setValue(value[control.name]))
     }
 
+    public get(name: keyof T): BitControl | null {
+        return this.controls?.find(c => c.name == name) ?? null
+    }
+
     public empty(): void {
         this.controls?.forEach(control => control.empty())
     }

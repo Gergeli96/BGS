@@ -1,5 +1,6 @@
 import { BitControl, BitType, IBitControl, IDatePickerValue } from '../gitform-types';
-import { Component, Input } from '@angular/core';
+import { FileInputComponent } from '../file-input/file-input.component';
+import { Component, Input, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-bitcontrol',
@@ -7,6 +8,7 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./bitcontrol.component.scss']
 })
 export class BitcontrolComponent {
+    @ViewChild(FileInputComponent, {static: false}) fileInputComponent: FileInputComponent
     public dateValue: IDatePickerValue
     public fileModelValue: any
     public control: BitControl
@@ -20,7 +22,10 @@ export class BitcontrolComponent {
         this.control = value
         
         if (value.type === BitType.longdate) {
-            value.subscribeToValueChange(control =>this.dateControlSubscription(control))
+            value.subscribeToValueChange(control => this.dateControlSubscription(control))
+        }
+        else if (value.type === BitType.file) {
+            value.subscribeToValueChange(control => this.fileControlValueChange(control))
         }
     }
 
@@ -41,7 +46,17 @@ export class BitcontrolComponent {
         }
     }
 
+    private fileControlValueChange(control: IBitControl): void {
+        if (this.empty(control.value)) {
+            this.fileInputComponent.setValue(null)
+        }
+    }
+
     private extendDate(value: number): string | number {
         return value >= 10 ? value : `0${value}`
+    }
+
+    private empty(value: any): boolean {
+        return value === null || value === undefined || value === ''
     }
 }

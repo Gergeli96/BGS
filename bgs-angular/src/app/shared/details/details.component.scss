@@ -1,0 +1,35 @@
+.details-container {
+    width: 100%;
+
+    .summary {
+        cursor: pointer;
+
+        i.bi-caret-right-fill {
+            transform: rotate(0deg);
+            transition: transform 0.5s;
+        }
+
+        ::ng-deep [summary=""] {
+            width: 100%;
+        }
+    }
+
+    .details {
+        padding-left: 2em;
+        padding-top: 0.5em;
+        display: none;
+    }
+}
+
+.details-container.opened {
+    .details {
+        display: block;
+    }
+
+    .summary {
+        i.bi-caret-right-fill {
+            transform: rotate(90deg);
+            transition: transform 0.5s;
+        }
+    }
+}

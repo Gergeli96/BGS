@@ -1,0 +1,44 @@
+<div class="month-row">
+    <div class="col day-name">Hétfő</div>
+    <div class="col day-name">Kedd</div>
+    <div class="col day-name">Szerda</div>
+    <div class="col day-name">Csütörtök</div>
+    <div class="col day-name">Péntek</div>
+    <div class="col day-name">Szombat</div>
+    <div class="col day-name">Vasárnap</div>
+    <ng-container *ngFor="let day of calendarDays">
+        <div class="col day-container" [attr.inselected]="day.inSelectedMonth">
+            <span>{{day.day}}</span>
+            <div *ngFor="let event of day.events" class="event" [attr.importance]="event.importance">{{event.text}}</div>
+        </div>
+    </ng-container>
+</div>
+
+<!-- <div class="week-row">
+    <div class="col">
+        <div class="hour"></div>
+    </div>
+    <div class="col" *ngFor="let day of days; let i = index">
+        <div class="hour">{{dayNames[i]}} {{day.day}}</div>
+    </div>
+</div>
+
+<div class="week-row">
+    <div class="col">
+        <div class="hour"></div>
+        <div class="hour" *ngFor="let hour of hours">{{hour}}</div>
+    </div>
+
+    <div class="col day-col" *ngFor="let day of days">
+        <div class="hour" *ngFor="let hour of hours"></div>
+
+        <ng-container *ngFor="let event of day.events">
+            <div [style.top]="event.top" [style.height]="event.height" [attr.importance]="event.importance" class="event">
+                {{event.text}}
+                {{event.date}}
+                
+                {{event.from}} - {{event.to}}
+            </div>
+        </ng-container>
+    </div>
+</div> -->

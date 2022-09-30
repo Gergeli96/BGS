@@ -7,14 +7,33 @@
 
 @import './my-styles/bootstrap-extension.scss';
 @import './my-styles/common-styles.scss';
+@import './my-styles/table.scss';
+@import './my-styles/form.scss';
+@import './my-styles/flex.scss';
 // @import './styles/bgs-colors.scss';
+
+@font-face {
+    font-family: 'myFont';
+    src: url("./my-styles/fonts/OpenSans-VariableFont_wdth\,wght.ttf") format("truetype");
+}
+
+* {
+    font-family: 'myFont', sans-serif !important;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+}
 
 body {
     background: linear-gradient(45deg, rgba(236,236,236,1) 0%, rgba(233,233,233,1) 35%, rgba(221,221,221,1) 100%);
+    color: #42526e
 }
 
 nav {
     background-color: #967238;
+}
+
+i {
+    color: #42526e
 }
 
 .card {
@@ -30,5 +49,19 @@ nav {
         .card-title {
             text-align: center;
         }
+    }
+}
+
+.navbar-page-container {
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+
+    .page-content {
+        height: calc(100vh - 56px);
+        background-color: #fff;
+        width: inherit;
+        overflow: auto;
     }
 }

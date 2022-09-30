@@ -1,6 +1,6 @@
 <div class="form" keynavigator>
     <div class="bitform-element" *ngFor="let control of controls">
-        <label class="form-label">{{control.label}}</label>
+        <label class="form-label" [attr.required]="control.required ? 'true' : 'false'">{{control.label}}</label>
         <app-bitcontrol [control]="control"></app-bitcontrol>
     </div>
 

@@ -1,0 +1,113 @@
+@import '../../my-styles/variables.scss';
+
+.month-row {
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0.25em;
+    display: grid;
+
+    .col {
+        grid-column: auto / span 1;
+        border: 1px solid #ddd;
+        height: 5em;
+
+        &[inselected="false"] {
+            background-color: #eee;
+        }
+
+        &.day-name {
+            height: unset;
+            border: unset;
+        }
+
+        &.day-container {
+            flex-direction: column;
+            padding: 0.1em;
+            display: flex;
+
+            .event {
+                font-size: 0.75em;
+                border-radius: 0.3em;
+                padding: 0.1em 0.2em;
+                color: #fff;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@keyframes ultraImportance {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.week-row {
+    grid-template-columns: 3em 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    display: grid;
+
+    .col {
+        grid-column: auto / span 1;
+        border: 1px solid #ddd;
+
+        &:first-child {
+            width: 3em;
+        }
+
+        .hour {
+            height: 5em;
+        }
+    }
+
+    .day-col {
+        position: relative;
+
+        .hour {
+            border-bottom: 1px solid #eee;
+        }
+
+        .event {
+            position: absolute;
+        }
+    }
+
+    .event {
+        background-color: $info;
+        width: 100%;
+        height: 21%;
+    }
+}
+
+.event {
+    border-radius: 0.2em;
+    padding: 0.2em;
+    color: #fff;
+
+    &[importance="1"] { // info
+        background-color: $info !important;
+    }
+
+    &[importance="2"] { // low
+        background-color: $success !important;
+    }
+
+    &[importance="3"] { // middle
+        background-color: $warning !important;
+    }
+
+    &[importance="4"] { // high
+        background-color: $danger !important;
+    }
+
+    &[importance="5"] { // ultra
+        background-color: rgb(255, 0, 0) !important;
+        animation-iteration-count: infinite;
+        animation-name: ultraImportance;
+        animation-duration: 2s;
+    }
+}

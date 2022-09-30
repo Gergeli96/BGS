@@ -22,7 +22,7 @@ export class VisitorComponent {
         {text: 'Rólunk', onclick: () => this.scrollTo('welcome-about-us')},
         {text: 'Mit kínálunk', onclick: () => this.scrollTo('welcome-cards')},
         {text: 'Galéria', onclick: () => this.scrollTo('welcome-carousel')},
-        {text: 'Webshop', onclick: () => this.router.navigateByUrl('')}
+        {text: 'Webshop', onclick: () => this.router.navigateByUrl('/webshop')}
     ]
 
     constructor(

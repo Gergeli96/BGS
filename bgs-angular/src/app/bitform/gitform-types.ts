@@ -20,7 +20,7 @@ export interface ISelectOption {
     name: string 
 }
 
-export type IBitControlValueChangeSubscription = (control: IBitControl) => void
+export type IBitControlValueChangeSubscription = (control: BitControl) => void
 
 export interface IBitControl<T = any> {
     label: string
@@ -28,23 +28,29 @@ export interface IBitControl<T = any> {
     type?: BitType
     options?: ISelectOption[]
     value?: any
+    suffix?: string
+    required?: boolean
 }
 
 export class BitControl<T = any> {
     private subscriptions: IBitControlValueChangeSubscription[] = [ ]
     public options: ISelectOption[]
     public errors: string[] = [ ]
+    public suffix?: string
     public label: string
     public name: keyof T
     public type: BitType
     public _value: any
+    public required?: boolean
 
     constructor(private model: IBitControl<T>) {
         this.label = model.label
         this.name = model.name
         this.type = model.type ?? BitType.text
         this.options = Array.isArray(model.options) ? model.options : [ ]
-        this.value = model.value
+        this.value = model.value ?? ''
+        this.suffix = model.suffix
+        this.required = model.required
     }
 
 
@@ -92,8 +98,20 @@ export class BitControl<T = any> {
         this.subscriptions.push(subcription)
     }
 
+    public emitValueChangeEvent(): void {
+        this.subscriptions.forEach(sub => sub(this))
+    }
+
     public setErrors(errors: string[]): void {
         if (!Array.isArray(errors)) errors = [ ]
         this.errors = errors
+    }
+
+    public setSelectOptions(options: ISelectOption[], addEmptySelect: boolean = false): void {
+        if (addEmptySelect) {
+            options = [{name: 'Kérem válasszon!', value: ''}, ...options]
+        }
+
+        this.options = options
     }
 }
