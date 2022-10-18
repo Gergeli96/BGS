@@ -1,0 +1,21 @@
+@import '../styles/variables.scss';
+
+footer {
+    background-color: $gray-background;
+    padding: 2rem;
+    width: calc(100vw - 4rem);
+
+    .company-logo {
+        height: auto;
+        width: 5rem;
+    }
+
+    .info-container {
+        padding-top: 3rem;
+        
+        span.info {
+            padding-right: 1rem;
+            font-size: 0.8rem;
+        }
+    }
+}

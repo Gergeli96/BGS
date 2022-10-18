@@ -1,18 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="assets/bgs-transparent.png" height="30" class="d-inline-block align-top" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item" *ngFor="let item of navItems">
-                    <a class="nav-link" (click)="item.onclick()">{{item.text}}</a>
-                </li>
-            </ul>
+<nav class="d-flex align-center">
+    <div class="logo">
+        <img src="assets/bgs-transparent.png" height="30" class="d-inline-block align-top cursor-pointer" alt="logo">
+    </div>
+
+    <div class="items-container d-flex justify-between align-center">
+        <div class="nav-links d-flex align-center">
+            <ng-container *ngFor="let item of navItems">
+                <a class="nav-link" (click)="item.onclick()">{{item.text}}</a>
+            </ng-container>
+        </div>
+
+        <div class="actions">
+            <div class="webshop-cart cursor-pointer">
+                <i class="bi bi-cart3"></i>
+                <span class="items d-flex justify-center align-center">{{cart}}</span>
+            </div>
         </div>
     </div>
 </nav>

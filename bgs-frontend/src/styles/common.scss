@@ -1,0 +1,72 @@
+@import './variables.scss';
+
+.danger {
+    color: $danger;
+}
+
+.success {
+    color: $success;
+}
+
+.warning {
+    color: $warning;
+}
+
+.info {
+    color: $info;
+}
+
+.d-none {
+    display: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.max-size {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.deg-30 {
+    transform: rotate(30deg);
+}
+
+.deg-30-before::before {
+    transform: rotate(30deg);
+}
+
+.deg-45 {
+    transform: rotate(45deg);
+}
+
+.action-icon-group {
+    background-color: $gray-background;
+    padding: 0.25rem 1rem;
+
+    i {
+        text-align: center;
+        font-size: 1.3rem;
+        cursor: pointer;
+        height: 2rem;
+        width: 2rem;
+
+        &:hover {
+            background-color: $gray-background2;
+        }
+    }
+
+    .divider {
+        color: $text-color;    
+        padding: 0 0.5rem;
+    }
+}
+
+.text-center {
+    text-align: center;
+}

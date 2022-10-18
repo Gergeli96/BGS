@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { WebshopItemEntity } from "./webshop-item.entity";
 
 @Entity('furniturecategories')
 export class FurnitureCategoryEntity {
@@ -7,4 +8,7 @@ export class FurnitureCategoryEntity {
   
     @Column({name: 'name', type: 'varchar', length: 60, nullable: false})
     public name: string
+
+    @OneToMany(() => WebshopItemEntity, (element) => element.category)
+    public elements: WebshopItemEntity[]
 }

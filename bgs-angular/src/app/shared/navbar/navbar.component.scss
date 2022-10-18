@@ -1,4 +1,40 @@
-.nav-link {
-    color: #fff !important;
-    cursor: pointer;
+@import '../../../my-styles/bgs-colors.scss';
+
+nav {
+    background-color: $brown;
+    padding: 0.5em 1em;
+
+    .logo {
+
+    }
+
+    .items-container {
+        .nav-link {
+            color: #fff !important;
+            cursor: pointer;
+        }
+
+        .actions {
+            i {
+                font-size: 1.6em;
+                color: #fff
+            }
+
+            .webshop-cart {
+                position: relative;
+                
+                .items {
+                    background-color: #fff;
+                    color: $font-color;
+                    position: absolute;
+                    border-radius: 1em;
+                    font-size: 0.8em;
+                    height: 1.5em;
+                    width: 1.5em;
+                    left: -10px;
+                    bottom: 0px;
+                }
+            }
+        }
+    }
 }

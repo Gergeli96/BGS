@@ -98,7 +98,7 @@ export class ProjectFilesService {
             "token_uri": keyValuePairs.get('token_uri'),
             "auth_provider_x509_cert_url": keyValuePairs.get('auth_provider_x509_cert_url'),
             "client_x509_cert_url": keyValuePairs.get('client_x509_cert_url')
-          }
+        }
 
         return credentials
     }

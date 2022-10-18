@@ -1,0 +1,15 @@
+.webshop-page-container {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+
+    .categories {
+        min-width: 17rem;
+        width: 17rem;
+    }
+    
+    .items {
+        overflow: hidden;
+        overflow-y: auto;
+    }
+}

@@ -1,0 +1,22 @@
+.webshop-item-preview-container {
+    height: inherit;
+    width: inherit;
+
+    .image-container {
+        width: -webkit-fill-available;
+        overflow: hidden;
+        height: 20rem;
+
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+}
+
+// @media (max-width: 539px) {
+//     .webshop-item-preview-container .image-container {
+//         height: 15rem;
+//     }
+// }
+

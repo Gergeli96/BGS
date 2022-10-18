@@ -1,0 +1,30 @@
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import './styles/variables.scss';
+@import './styles/overrides.scss';
+@import './styles/spacing.scss';
+@import './styles/common.scss';
+@import './styles/button.scss';
+@import './styles/sizes.scss';
+@import './styles/grid.scss';
+@import './styles/flex.scss';
+@import './styles/form.scss';
+@import './styles/list.scss';
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    color: $text-color;
+}
+
+h1, h2, h3, h4, h5, h6, label {
+    font-weight: bolder;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

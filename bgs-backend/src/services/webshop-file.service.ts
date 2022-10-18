@@ -14,4 +14,11 @@ export class WebshopFilesService extends BaseEntityService<WebshopFileEntity, We
         super(repository)
     }
 
+    protected dtoToEntity(dto: WebshopFileDto, entity: WebshopFileEntity): WebshopFileEntity {
+        entity.id = dto.id
+        entity.fileid = dto.fileid
+        entity.webshopelementid = dto.webshopelementid
+        
+        return entity
+    }
 }

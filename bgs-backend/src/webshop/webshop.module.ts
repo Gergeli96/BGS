@@ -2,39 +2,41 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DbModule } from 'src/db/db.module';
 import { Module } from '@nestjs/common';
 
-import { WebshopElementGroupController } from './webshop-element-group.controller';
+import { WebshopElementGroupController } from './webshop-item-group.controller';
 import { FurnitureCategoryController } from './furniture-category.controller';
-import { WebshopElementController } from './webshop-element.controller';
+import { WebshopItemController } from './webshop-item.controller';
 import { WebshopController } from './webshop.controller';
 
-import { WebshopElementGroupEntity } from 'src/db/entities/webshop-element-group.entity';
-import { WebshopElementEntity } from 'src/db/entities/webshop-element.entity';
+import { WebshopItemGroupEntity } from 'src/db/entities/webshop-item-group.entity';
 import { FurnitureCategoryEntity } from 'src/db/entities/furniture-category';
+import { WebshopItemEntity } from 'src/db/entities/webshop-item.entity';
 import { WebshopFileEntity } from 'src/db/entities/webshop-file.entity';
 
-import { WebshopElementGroupService } from 'src/services/webshop-element-group.service';
+import { WebshopElementGroupService } from 'src/services/webshop-item-group.service';
 import { FurnitureCategoryService } from 'src/services/furniture-category.service';
-import { WebshopElementService } from 'src/services/webshop-element.service';
 import { WebshopFilesService } from 'src/services/webshop-file.service';
 import { ProjectFilesService } from 'src/services/projectfiles.service';
+import { WebshopItemService } from 'src/services/webshop-item.service';
+import { FileUploadService } from 'src/services/file-upload.service';
 
 @Module({
     imports: [
         DbModule,
-        TypeOrmModule.forFeature([FurnitureCategoryEntity, WebshopElementGroupEntity, WebshopElementEntity, WebshopFileEntity])
+        TypeOrmModule.forFeature([FurnitureCategoryEntity, WebshopItemGroupEntity, WebshopItemEntity, WebshopFileEntity])
     ],
     controllers: [
         WebshopElementGroupController,
         FurnitureCategoryController,
-        WebshopElementController,
+        WebshopItemController,
         WebshopController
     ],
     providers: [
         WebshopElementGroupService,
         FurnitureCategoryService,
-        WebshopElementService,
         WebshopFilesService,
-        ProjectFilesService
+        ProjectFilesService,
+        WebshopItemService,
+        FileUploadService
     ]
 })
 export class WebshopModule {}

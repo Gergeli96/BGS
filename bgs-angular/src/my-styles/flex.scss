@@ -1,8 +1,13 @@
 .d-flex {
+    width: -webkit-fill-available;
     display: flex;
 
     &.column {
         flex-direction: column;
+    }
+
+    &.justify-betwee {
+        justify-content: space-between;
     }
 
     &.justify-center {

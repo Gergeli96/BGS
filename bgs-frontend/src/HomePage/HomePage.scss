@@ -1,0 +1,71 @@
+@import '../styles/variables.scss';
+$home-image-height: 65vh;
+
+.home-page-container {
+    overflow: hidden;
+    overflow-y: auto;
+    width: inherit;
+
+    .home-image {
+        background: url('../assets/welcome.png');
+        background-repeat: no-repeat;
+        background-size: 100vw auto;
+        background-position: center;
+        height: $home-image-height;
+        width: inherit;
+
+        .company-logo-container {
+            background-color: $gray-background;
+            height: fit-content;
+
+            img {
+                height: 15rem;
+                width: auto;
+            }
+        }
+
+        .company-name {
+            background-color: $gray-background;
+            padding: 0.25rem 1rem;
+        }
+    }
+
+    .home-page-content-container {
+        padding: 1rem;
+        
+        .home-page-content {
+            max-width: $container-max-width;
+
+            .about-us {
+                padding: 3rem 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 930px) {
+    .home-page-container {
+        .home-image {
+            background-size: auto 100vh;
+
+            .company-logo-container {
+                img {
+                    height: auto;
+                    width: 50vw;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 625px) {
+    .home-page-container {
+        .home-image {
+            height: 40vh;
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

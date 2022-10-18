@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { WebshopElementEntity } from "./webshop-element.entity";
+import { WebshopItemEntity } from "./webshop-item.entity";
 
 @Entity('webshopfiles')
 export class WebshopFileEntity {
@@ -12,7 +12,7 @@ export class WebshopFileEntity {
     @Column({name: 'webshopelement_id', type: 'int', nullable: true})
     public webshopelementid: number
 
-    @ManyToOne(() => WebshopElementEntity, (galery) => galery.files, {onDelete: 'CASCADE'})
+    @ManyToOne(() => WebshopItemEntity, (galery) => galery.files, {onDelete: 'CASCADE'})
     @JoinColumn({name: "webshopelement_id"})
-    public webshopelement: WebshopElementEntity
+    public webshopelement: WebshopItemEntity
 }

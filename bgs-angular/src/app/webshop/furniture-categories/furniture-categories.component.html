@@ -1,7 +1,7 @@
-<ul class="list-group">
-    <li class="list-group-item cursor-pointer">Összes</li>
+<ul class="list-group" #categoryList>
+    <li class="list-group-item cursor-pointer active" [attr.identifier]="0" (click)="changeActiveCategory(0)">Összes</li>
 
     <ng-container *ngFor="let category of categories">
-        <li class="list-group-item cursor-pointer">{{category.name}}</li>
+        <li class="list-group-item cursor-pointer" [attr.identifier]="category.id" (click)="changeActiveCategory(category.id)">{{category.name}}</li>
     </ng-container>
 </ul>

@@ -1,0 +1,71 @@
+@import '../styles/variables.scss';
+$navbar-height: 2.5rem;
+
+nav {
+    width: -webkit-fill-available;
+    background-color: $brown;
+    height: $navbar-height;
+    padding: 0.5rem 1rem;
+
+    .left-side {
+        img {
+            height: 2rem;
+            width: auto;
+        }
+
+        .bi-list {
+            border: 1px solid $white;
+            border-radius: 0.25rem;
+            font-size: 1.5rem;
+            padding: 0 0.5rem;
+            display: none;
+            color: $white;
+        }
+
+        .nav-links {
+            .nav-link {
+                padding-right: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                color: $white;
+            }
+        }
+    }
+}
+
+.small-window-links {
+    height: calc(100vh - ($navbar-height + 1rem));
+    top: calc($navbar-height + 1rem);
+    background-color: $border-color;
+    transition: left 0.5s;
+    position: fixed;
+    width: 15rem;
+    left: -15rem;
+
+    &.open {
+        transition: left 0.5s;
+        left: 0;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 650px) {
+    nav {
+        .left-side {
+            background-size: auto 100vh;
+
+            .nav-links {
+                display: none;
+            }
+
+            .bi-list {
+                display: block;
+            }
+        }
+    }
+}

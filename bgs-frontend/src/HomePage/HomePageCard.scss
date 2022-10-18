@@ -1,0 +1,12 @@
+@import '../styles/variables.scss';
+
+.homepage-card {
+    // max-width: 21rem;
+    border-radius: 0.25rem;
+    border: $border;
+
+    img {
+        width: fit-content;
+        height: 10rem;
+    }
+}

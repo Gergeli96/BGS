@@ -1,0 +1,18 @@
+$success: #36B37E;
+$warning: #FFAB00;
+$danger: #dc3545;
+$brown: #967238;
+$info: #0065FF;
+$white: #fff;
+
+$border-color: #DFE1E6;
+$text-color: #42526e;
+$gray-background: rgba($color: $border-color, $alpha: 0.5);
+$gray-background2: rgba($color: $border-color, $alpha: 0.75);
+$border: 1px solid $border-color;
+$container-max-width: 65rem;
+
+@mixin border-mixin {
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+}

@@ -1,4 +1,5 @@
 import { IWebshopElementForm, IWebshopElementGroup } from 'src/app/types/webshop.types';
+import { IFurnitureCategory } from 'src/app/types/furniture-category.types';
 import { BitType, IBitControl } from 'src/app/bitform/gitform-types';
 import { BitformComponent } from 'src/app/bitform/bitform.component';
 import { SelectOption } from 'src/app/helpers/select-option.helper';
@@ -14,8 +15,9 @@ import { Common } from 'src/app/helpers/common';
 export class WebshopElementFormComponent {
     @ViewChild(BitformComponent, {static: true}) form: BitformComponent<IWebshopElementForm>
     private webshopElementGroups: IWebshopElementGroup[] = [ ]
-    public controls: IBitControl[] = [
+    public controls: IBitControl<IWebshopElementForm>[] = [
         {label: 'Csoport', name: 'groupid', type: BitType.select, options: [ ]},
+        {label: 'Kategória', name: 'categoryid', type: BitType.select, options: [ ]},
         {label: 'Név', name: 'name', required: true},
         {label: 'Ár', name: 'price', type: BitType.number, suffix: 'Ft'},
         {label: 'Leírás', name: 'description', type: BitType.textarea},
@@ -28,6 +30,7 @@ export class WebshopElementFormComponent {
 
     ngOnInit(): void {
         this.getGroups()
+        this.getCatgories()
     }
 
     ngAfterViewInit(): void {
@@ -39,9 +42,10 @@ export class WebshopElementFormComponent {
         const formValue = this.form.value
         const formData = new FormData()
         formData.set('name', formValue.name)
-        formData.set('price', formValue.price?.toString() ?? '')
-        formData.set('groupid', formValue.groupid?.toString() ?? '')
+        formData.set('price', formValue.price?.toString() ?? '0')
+        formData.set('groupid', formValue.groupid?.toString() ?? '0')
         formData.set('description', formValue.description)
+        formData.set('categoryid', formValue.categoryid?.toString() ?? '0')
 
         for (let i = 0; i < formValue.files.length; i++) {
             formData.append('files', formValue.files.item(i) as Blob)
@@ -58,6 +62,13 @@ export class WebshopElementFormComponent {
                 this.form.get('groupid')?.setSelectOptions(response.map(x => new SelectOption(x.name, x.id)), true)
                 this.webshopElementGroups = response
             })
+            .catch(error => { })
+    }
+
+    private getCatgories(): void {
+        this.http.get<IFurnitureCategory[]>('furniturecategories')
+            .then(response => response.map(x => new SelectOption(x.name, x.id)))
+            .then(selectOptions => this.form.get('categoryid')?.setSelectOptions(selectOptions))
             .catch(error => { })
     }
 

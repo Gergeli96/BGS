@@ -1,0 +1,47 @@
+@import '../styles/variables.scss';
+
+.table-input {
+    position: fixed;
+    left: -100rem;
+    top: -100rem
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+        padding: 0.5rem 0.5rem;
+    }
+
+    tr th, tr td {
+        border-bottom: $border;
+        border-right: $border;
+
+        &:first-child {
+            border-left: $border;
+        }
+    }
+
+    thead tr th {
+        border-top: $border;
+    }
+
+    tbody tr {
+        cursor: pointer;
+
+        &:hover td {
+            background-color: $gray-background;
+        }
+
+        &.active {
+            background-color: $gray-background2;
+        }
+
+        td {
+            &[attr-type="number"] {
+                text-align: end;
+            }
+        }
+    }
+}

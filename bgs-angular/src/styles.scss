@@ -7,9 +7,11 @@
 
 @import './my-styles/bootstrap-extension.scss';
 @import './my-styles/common-styles.scss';
+@import './my-styles/bgs-colors.scss';
 @import './my-styles/table.scss';
 @import './my-styles/form.scss';
 @import './my-styles/flex.scss';
+@import './my-styles/grid.scss';
 // @import './styles/bgs-colors.scss';
 
 @font-face {
@@ -24,16 +26,13 @@
 }
 
 body {
-    background: linear-gradient(45deg, rgba(236,236,236,1) 0%, rgba(233,233,233,1) 35%, rgba(221,221,221,1) 100%);
-    color: #42526e
-}
-
-nav {
-    background-color: #967238;
+    // background: linear-gradient(45deg, rgba(236,236,236,1) 0%, rgba(233,233,233,1) 35%, rgba(221,221,221,1) 100%);
+    background-color: $global-background-color;
+    color: $font-color;
 }
 
 i {
-    color: #42526e
+    color: $font-color;
 }
 
 .card {

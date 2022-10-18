@@ -5,13 +5,13 @@
 
     <div class="col-9">
         <div class="row">
-            <div class="col-6">
-                <webshop-item-card></webshop-item-card>
+            <div class="col-6" *ngFor="let element of webshopElements">
+                <webshop-item-card [element]="element"></webshop-item-card>
             </div>
 
-            <div class="col-6">
+            <!-- <div class="col-6">
                 <webshop-item-card></webshop-item-card>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

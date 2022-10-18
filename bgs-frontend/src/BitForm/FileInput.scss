@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+
+.bit-file-input-container {
+    width: -webkit-fill-available;
+
+    .file-drop-area {
+        border: 2px dashed $border-color;
+        width: -webkit-fill-available;
+        padding: 2rem 0;
+
+        i {
+            font-size: 2rem;
+        }
+
+        &:hover {
+            border-color: $info;
+
+            i {
+                color: $info;
+            }
+        }
+    }
+
+    .selected-files-container {
+        .selectedfile {
+            padding-right: 0.5rem;
+
+            &:last-child {
+                padding-right: unset;
+            }
+        }
+    }
+}
