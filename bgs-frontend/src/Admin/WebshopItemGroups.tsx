@@ -4,7 +4,7 @@ import { navigate } from "../helpers/navigation-helper";
 import { IJsxElement } from "../types/general-types";
 import { BitTable } from "../BitTable/BitTable";
 import { useNavigate } from "@solidjs/router";
-import { get } from "../helpers/http";
+import { Delete, Get } from "../helpers/http";
 import { onMount } from "solid-js";
 
 export function WebshipItemGroups(): IJsxElement {
@@ -18,15 +18,29 @@ export function WebshipItemGroups(): IJsxElement {
     onMount(() => getGroups())
 
     function getGroups(): void {
-        columns.dataFetch(() => get('webshopitemgroups'))
+        columns.dataFetch(() => Get('webshopitemgroups'))
+    }
+
+    function deleteAction(): void {
+        if (columns.activeRow) {
+            Delete(`webshopitemgroups/delete/${columns.activeRow?.id}`, { }, {deleteModalMessage: 'Ennek az adatnak a törlésével törlődni fog az összes hozzá kacsolódó bútordarab a webshopban. Biztosan törölni szeretnéd?'})
+                .then(response => getGroups())
+                .catch(error => { })
+        }
+    }
+
+    function toEdit(): void {
+        if (columns.activeRow) {
+            navigate(navigator, `/admin/webshopitemgroup/${columns.activeRow?.id}`)
+        }
     }
 
     return (<>
         <BitTable columngroup={columns}></BitTable>
         <div class="d-flex justify-end pt-2">
             <button class="btn-success mr-1" onClick={() => navigate(navigator, '/admin/webshopitemgroup')}>Új felvitele</button>
-            <button class="btn-warning mr-1" onClick={() => navigate(navigator, `/admin/webshopitemgroup?id=${columns.activeRow?.id}`)}>Módosítás</button>
-            <button class="btn-danger">Törlés</button>
+            <button class="btn-warning mr-1" onClick={toEdit}>Módosítás</button>
+            <button class="btn-danger" onClick={deleteAction}>Törlés</button>
         </div>
     </>)
 }

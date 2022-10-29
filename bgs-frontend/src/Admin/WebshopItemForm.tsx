@@ -1,9 +1,11 @@
 import { IDetailedWebshopItem, IWebshopItemForm, IWebshopItemGroup } from "../types/webshop-types";
 import { BitControlGroup, BitControlType, SelectOption } from "../BitForm/bitform-types";
 import { IFurnitureCategory } from "../types/furniture-category-types";
+import { useNavigate, useParams } from "@solidjs/router";
+import { navigate } from "../helpers/navigation-helper";
 import { createSignal, onMount, Show } from "solid-js";
 import { IJsxElement } from "../types/general-types";
-import { get, post, put } from "../helpers/http";
+import { Get, Post, Put } from "../helpers/http";
 import { BitForm } from "../BitForm/BitForm";
 
 export function WebshopItemForm(): IJsxElement {
@@ -17,9 +19,12 @@ export function WebshopItemForm(): IJsxElement {
         {label: 'Képek', name: 'files', type: BitControlType.file}
     ])
     const [editMode, setEditMode] = createSignal<boolean>(false)
+    const navigator = useNavigate()
+    const params = useParams()
     let groups: IWebshopItemGroup[] = [ ]
 
     onMount(() => {
+        setEditMode(!!params.id)
         Promise.all([getGroups(), getCategories()])
             .then(() => getWebshopItem())
             .catch(error => { })
@@ -27,7 +32,7 @@ export function WebshopItemForm(): IJsxElement {
 
     function getGroups(): Promise<void> {
         return new Promise((resolve, reject) => {
-            get<IWebshopItemGroup[]>('webshopitemgroups')
+            Get<IWebshopItemGroup[]>('webshopitemgroups')
                 .then(response => {
                     groups = response
                     let selectOptions = response.map(x => new SelectOption(x.name, x.id))
@@ -40,7 +45,7 @@ export function WebshopItemForm(): IJsxElement {
 
     function getCategories(): Promise<void> {
         return new Promise((resolve, reject) => {
-            get<IFurnitureCategory[]>('furniturecategories')
+            Get<IFurnitureCategory[]>('furniturecategories')
                 .then(response => {
                     let selectOptions = response.map(x => new SelectOption(x.name, x.id))
                     controls.get('categoryid')?.setOptions(selectOptions)
@@ -51,14 +56,11 @@ export function WebshopItemForm(): IJsxElement {
     }
 
     function getWebshopItem(): void {
-        const id = Object.fromEntries(new URLSearchParams(window.location.search).entries())?.id ?? null
+        const id = params.id ?? null
 
         if (id != null) {
-            get<IDetailedWebshopItem>(`webshopitems/detailed/${id}`)
-                .then(response => {
-                    controls.setValue(response)
-                    setEditMode(true)
-                })
+            Get<IDetailedWebshopItem>(`webshopitems/detailed/${id}`)
+                .then(response => controls.setValue(response))
                 .catch(error => { })
         }
     }
@@ -73,17 +75,17 @@ export function WebshopItemForm(): IJsxElement {
     }
 
     function save(): void {
-        post('webshopitems', controls.valueAsFormData)
+        Post('webshopitems', controls.valueAsFormData)
             .then(response => controls.empty())
             .catch(error => { })
     }
 
     function edit(): void {
-        put('webshopitems', controls.valueAsFormData)
-            .then(response => {
-                controls.empty()
-                setEditMode(false)
-            })
+        const formData = controls.valueAsFormData
+        formData.set('id', params.id ?? '')
+
+        Put('webshopitems', formData)
+            .then(response => navigate(navigator, '/webshopitem'))
             .catch(error => { })
     }
 

@@ -11,6 +11,10 @@ export interface IWebshopItemGroup {
     description: string
 }
 
+export interface IWebshopItemGroupForm extends IWebshopItemGroup {
+    edititems?: boolean
+}
+
 export interface IDetailedWebshopItemGroup extends IWebshopItemGroup {
     id?: number
     name: string

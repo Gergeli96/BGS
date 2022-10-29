@@ -1,5 +1,6 @@
 import { getControlDefaultValue } from "../helpers/form-helpers"
 import { Accessor, createSignal, Setter } from "solid-js"
+import { IJsxElement } from "../types/general-types"
 
 export interface ISelectOption {
     name: string
@@ -22,6 +23,7 @@ export interface IBitControl<T = any> {
     options?: ISelectOption[]
     value?: any
     onValueChange?: (value: any) => void
+    suffix?: string | IJsxElement
 }
 
 export interface IBitFormButton {
@@ -29,6 +31,8 @@ export interface IBitFormButton {
     className: string
     name: string
 }
+
+export type IControlSubscription = (value: any) => void
 
 export class SelectOption implements ISelectOption {
     public name: string
@@ -42,12 +46,14 @@ export class SelectOption implements ISelectOption {
 
 export class BitControl implements Omit<IBitControl, 'options'> {
     public options: Accessor<ISelectOption[] | undefined>
+    private subscriptions: IControlSubscription[] = [ ]
     private optionsSetter: Setter<ISelectOption[]>
     public value: Accessor<any | undefined>
     private valueSetter: Setter<any>
     public label: string = ''
     public name: string = ''
     public type?: BitControlType
+    suffix?: string | IJsxElement
 
     constructor(public config: IBitControl) {
         let optionSignal = createSignal<ISelectOption[]>()
@@ -62,11 +68,13 @@ export class BitControl implements Omit<IBitControl, 'options'> {
         this.label = config.label
         this.name = config.name as string
         this.type = config.type
+        this.suffix = config.suffix
     }
 
     public setValue(value: any): void {
         this.valueSetter(value)
         if (this.config.onValueChange) this.config.onValueChange(value)
+        this.subscriptions.forEach(subscription=> subscription(value))
     }
 
     public setOptions(options: ISelectOption[], withEmpty: boolean = true): void {
@@ -74,6 +82,10 @@ export class BitControl implements Omit<IBitControl, 'options'> {
         if (withEmpty) options = [new SelectOption('Kérem válasszon', ''), ...options]
 
         this.optionsSetter(options)
+    }
+
+    public subscribe(subscription: IControlSubscription): void {
+        this.subscriptions.push(subscription)
     }
 }
 

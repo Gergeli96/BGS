@@ -1,14 +1,25 @@
+import { createSignal, For, onMount } from "solid-js";
 import { IJsxElement } from "../types/general-types";
-import { createSignal, For } from "solid-js";
+import { BitControl } from "./bitform-types";
 import './FileInput.scss';
 
 export interface IFileInputProps {
     onChange: (files: File[]) => void
+    control: BitControl
 }
 
 export function FileInput(props: IFileInputProps): IJsxElement {
     const [attachments, setAttachments] = createSignal<string[]>([])
     let fileInput: HTMLInputElement | undefined
+
+    onMount(() => props.control.subscribe(value => onControlValueChange(value)))
+
+    function onControlValueChange(value: any): void {
+        console.log('Value change!')
+        if (!Array.isArray(value) || value.length == 0) {
+            setAttachments([])
+        }
+    }
 
     function onFileSelect(files: FileList | null | undefined): void {
         let filelist: File[] = [ ]

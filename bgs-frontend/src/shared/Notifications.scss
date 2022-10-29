@@ -1,0 +1,76 @@
+@import '../styles/variables.scss';
+
+$card-width: 25rem;
+
+.notifications-container {
+    left: calc((100vw - $card-width) / 2);
+    position: fixed;
+    width: auto;
+    top: 0;
+
+    .notification-card {
+        border-radius: 0.25rem;
+        font-weight: 500;
+        color: $white;
+        width: 25rem;
+
+        &[attr-type="success"] {
+            background-color: $success;
+
+            .type-icon::before {
+                content: "\f26b";
+            }
+        }
+
+        &[attr-type="warning"] {
+            background-color: $warning;
+
+            .type-icon::before {
+                content: "\f33b";
+            }
+        }
+
+        &[attr-type="danger"] {
+            background-color: $danger;
+
+            .type-icon::before {
+                content: "\f627";
+            }
+        }
+
+        &[attr-type="info"] {
+            background-color: $info;
+
+            .type-icon::before {
+                content: "\f646";
+            }
+        }
+        
+        &[attr-type="async"] {
+            background-color: $info;
+
+            .type-icon::before {
+                animation: spin 2s linear infinite;
+                content: "\f116";
+            }
+        }
+
+        &.delete {
+            transition: left 0.5s;
+            left: 100vw;
+        }
+
+        span {
+            width: -webkit-fill-available;
+        }
+
+        i {
+            color: $white;
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

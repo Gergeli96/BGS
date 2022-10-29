@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 
 import { WebshopElementGroupController } from './webshop-item-group.controller';
 import { FurnitureCategoryController } from './furniture-category.controller';
+import { WebshopFilesController } from './webshop-file.controller';
 import { WebshopItemController } from './webshop-item.controller';
 import { WebshopController } from './webshop.controller';
 
@@ -27,6 +28,7 @@ import { FileUploadService } from 'src/services/file-upload.service';
     controllers: [
         WebshopElementGroupController,
         FurnitureCategoryController,
+        WebshopFilesController,
         WebshopItemController,
         WebshopController
     ],

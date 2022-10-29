@@ -9,7 +9,6 @@ import { AppController } from './app.controller';
 
 import { ClientMiddleware } from './middlewares/client.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { AppService } from './app.service';
 import { join } from 'path';
 
 @Module({
@@ -23,7 +22,7 @@ import { join } from 'path';
         AuthModule
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: []
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer) {

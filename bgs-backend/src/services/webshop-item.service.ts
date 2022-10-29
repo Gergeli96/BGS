@@ -1,12 +1,9 @@
 import { WebshopItemDto, WebshopItemOverViewDto } from "src/dto/webshop-item.dto";
 import { WebshopItemEntity } from "src/db/entities/webshop-item.entity";
-import { WebshopFileEntity } from "src/db/entities/webshop-file.entity";
 import { BadRequest } from "src/exceptions/badrequest.exception";
 import { IMulterFile } from "src/interfaces/file.interfaces";
 import { WebshopFilesService } from "./webshop-file.service";
-import { FileUploadService } from "./file-upload.service";
 import { BaseEntityService } from "./base-entity.service";
-import { WebshopFileDto } from "src/dto/webshop-file.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
@@ -17,8 +14,7 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
 
     constructor(
         @InjectRepository(WebshopItemEntity) protected repository: Repository<WebshopItemEntity>,
-        private webshopFileService: WebshopFilesService,
-        private filesService: FileUploadService
+        private webshopFileService: WebshopFilesService
     ) {
         super(repository)
     }
@@ -30,10 +26,10 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
     }
 
     public async getDetailedElements(groupid?: number): Promise<WebshopItemDto[]> {
-        let elements = await this.repository.find({where: {groupid: groupid}, relations: ['files']})
+        let elements = await this.repository.find({relations: ['files']})
 
         if (groupid > 0) {
-            elements.filter(el => el.groupid == groupid)
+            elements = elements.filter(el => el.groupid == groupid)
         }
 
         return elements.map(el => new WebshopItemDto(el))
@@ -65,18 +61,8 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
             throw new BadRequest()
         }
         
-        const fileIds = await this.filesService.uploadFiles(files)
         let element = await this.repository.save(this.dtoToEntity(model, new WebshopItemEntity()))
-
-        const elementFiles = fileIds.map(fileId => {
-            let file = new WebshopFileDto()
-            file.webshopelementid = element.id
-            file.fileid = fileId
-
-            return file
-        })
-
-        await this.webshopFileService.createEntities(elementFiles, new WebshopFileEntity())
+        await this.webshopFileService.upload(element.id, files)
 
         return this.entityToDto(element)
     }

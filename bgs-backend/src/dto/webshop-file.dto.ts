@@ -13,3 +13,7 @@ export class WebshopFileDto {
         }
     }
 }
+
+export interface IWebshopitemFileUpload {
+    itemid: number
+}

@@ -1,11 +1,10 @@
-import { BitControl, BitControlGroup, BitControlType, IBitControl, IBitFormButton } from "./bitform-types";
+import { BitControl, BitControlGroup, BitControlType, IBitControl } from "./bitform-types";
 import { createSignal, For, Match, Switch } from "solid-js";
 import { IJsxElement } from "../types/general-types";
 import { FileInput } from "./FileInput";
 
 export interface IBitFormProps {
     save?: (formValue: any) => void
-    // buttons?: IBitFormButton[]
     controls: BitControlGroup
     children?: any
 }
@@ -35,9 +34,6 @@ export function BitForm(props: IBitFormProps): IJsxElement {
 
             <div class="d-flex justify-end pt-2">
                 {props.children}
-                {/* <For each={props.buttons}>{x =>
-                   <button class={x.className} onClick={() => x.onclick(value())}>{x.name}</button>
-                }</For> */}
             </div>
         </div>
     )
@@ -74,9 +70,10 @@ export function BitControlElement(props: IBitControlProps): IJsxElement {
                     <textarea rows={3} name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)}></textarea>
                 </Match>
                 <Match when={props.config.type == BitControlType.file}>
-                    <FileInput onChange={value => props.config.setValue(value)}></FileInput>
+                    <FileInput control={props.config} onChange={value => props.config.setValue(value)}></FileInput>
                 </Match>
             </Switch>
+            <span>{props.config.suffix}</span>
         </div>
     )
 }

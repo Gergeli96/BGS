@@ -3,13 +3,19 @@
     height: 100vh;
     width: 100vw;
 
-    .categories {
-        min-width: 17rem;
-        width: 17rem;
-    }
-    
-    .items {
-        overflow: hidden;
-        overflow-y: auto;
+    .page-content {
+        width: 100vw;
+        height: calc(100vh - 56px);
+
+        .categories {
+            min-width: 17rem;
+            width: 17rem;
+        }
+        
+        .items {
+            width: -webkit-fill-available;
+            overflow: hidden;
+            overflow-y: auto;
+        }
     }
 }

@@ -6,6 +6,10 @@
         flex-direction: column;
     }
 
+    &.wrap {
+        flex-wrap: wrap;
+    }
+
     &.justify-start {
         justify-content: flex-start;
     }

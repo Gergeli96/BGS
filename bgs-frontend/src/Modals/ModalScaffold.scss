@@ -1,0 +1,47 @@
+@import '../styles/variables.scss';
+
+.modal-conatiner {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9;
+    left: 0;
+    top: 0;
+
+    .modal-content-container {
+        background-color: #00000082;
+        justify-content: center;
+        position: relative;
+        height: inherit;
+        width: inherit;
+        display: flex;
+
+        .modal-content {
+            border: 1px solid $border-color;
+            background-color: $white;
+            animation-duration: 0.7s;
+            animation-name: hover-in;
+            border-radius: 0.25rem;
+            position: absolute;
+            max-height: 90vh;
+            // height: 30rem;
+            width: 30rem;
+            top: 5vh;
+
+            .modal-header {
+                i {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .modal-body {
+                height: -webkit-fill-available;
+            }
+        }
+    }
+}
+
+@keyframes hover-in {
+    from {top: -90vh;}
+    to {top: 5vh;}
+}

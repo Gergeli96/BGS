@@ -1,8 +1,6 @@
-@import '../styles/variables.scss';
-
 .webshop-cart-container {
-    i {
-        font-size: 1.7rem;
-        color: $white;
-    }
+    height: calc(100vh - 2rem);
+    width: calc(100vw - 2rem);
+    overflow: hidden;
+    overflow-y: auto;
 }

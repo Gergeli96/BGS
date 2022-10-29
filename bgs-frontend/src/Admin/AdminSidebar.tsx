@@ -15,7 +15,7 @@ export function AdminSidebar(): IJsxElement {
         {name: 'Webshop csoport elemek', url: '/admin/webshopitemgroups'},
         {name: 'Webshop elem', url: '/admin/webshopitem'},
         {name: 'Webshop elemek', url: '/admin/webshopitems'},
-        {name: 'Képek kezelése', url: '/admin/editimages'}
+        {name: 'Webshop képek kezelése', url: '/admin/editimages'}
     ]
     let linksContainer: HTMLDivElement | undefined
     const navigator = useNavigate()
@@ -30,7 +30,7 @@ export function AdminSidebar(): IJsxElement {
         <div class="sidebar-container p-4">
             <div ref={linksContainer} class="links d-flex column">
                 <For each={links}>{x =>
-                    <a class="link" data-url={x.url} onClick={() => navigate(navigator, x.url)}>{x.name}</a>
+                    <a class="link cursor-pointer" data-url={x.url} onClick={() => navigate(navigator, x.url)}>{x.name}</a>
                 }</For>
             </div>
         </div>

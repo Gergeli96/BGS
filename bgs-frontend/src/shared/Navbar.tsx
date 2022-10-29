@@ -1,5 +1,5 @@
 import { IJsxElement } from "../types/general-types";
-import { WebshopCart } from "./WebshopCart";
+import { WebshopCartIcon } from "./WebshopCartIcon";
 import { For } from "solid-js";
 import './Navbar.scss';
 
@@ -34,7 +34,7 @@ export function Navbar(props: INavbarProps): IJsxElement {
             </div>
 
             <div class="right-side">
-                <WebshopCart />
+                <WebshopCartIcon />
             </div>
         </nav>
 

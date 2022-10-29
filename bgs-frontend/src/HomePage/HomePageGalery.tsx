@@ -2,7 +2,7 @@ import { GaleryCarousel, IGaleryCarouselImage } from "../shared/GaleryCarousel";
 import { IJsxElement } from "../types/general-types";
 import { createSignal, onMount } from "solid-js";
 import { IGalery } from "../types/galery-types";
-import { get } from "../helpers/http";
+import { Get } from "../helpers/http";
 import './HomePageGalery.scss';
 
 export function HomePageGalery(): IJsxElement {
@@ -12,7 +12,7 @@ export function HomePageGalery(): IJsxElement {
     onMount(() => getGaleries())
 
     function getGaleries(): void {
-        get<IGalery[]>('galeries')
+        Get<IGalery[]>('galeries')
             .then(response => {
                 let files = response.map(x => {return {url: x.files[0]?.fileid ?? ''}})
                 setGaleries(files)

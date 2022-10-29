@@ -1,0 +1,24 @@
+@import '../styles/variables.scss';
+
+.webshop-cart-icon-container {
+    position: relative;
+
+    i {
+        font-size: 1.7rem;
+        color: $white;
+    }
+
+    .itemcount {
+        background-color: white;
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        left: -1rem;
+        bottom: 0rem;
+        border-radius: 0.6rem;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        font-weight: 600;
+    }
+}

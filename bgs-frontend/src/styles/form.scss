@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-input, select, textarea {
+input:not([type="checkbox"]), select, textarea {
     display: block;
     width: -webkit-fill-available;
     padding: 0.375rem 0.75rem;

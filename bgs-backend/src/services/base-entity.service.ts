@@ -58,7 +58,7 @@ export abstract class BaseEntityService<Entity, Dto extends IDto> {
         return {...this.baseDto}
     }
 
-    private async findOne(id: number): Promise<Entity> {
+    protected async findOne(id: number): Promise<Entity> {
         return await (this.repository as Repository<any>).findOne({ where: { id: id } })
     }
 }

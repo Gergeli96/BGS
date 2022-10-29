@@ -49,6 +49,14 @@ export class FileUploadService {
         }
     }
 
+    public async deleteFile(fileId: string): Promise<any> {
+        try {
+            const response = await this.driveService.files.delete({fileId: fileId})
+        } catch (error) {
+            
+        }
+    }
+
     private authenticateGoogle() {
         const auth = new GoogleAuth({
             scopes: "https://www.googleapis.com/auth/drive",

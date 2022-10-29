@@ -1,15 +1,23 @@
 @import '../styles/variables.scss';
 
-.webshop-item-container {
+.webshop-item-page-container {
     overflow: hidden;
+    height: 100vh;
     width: 100vw;
 
-    .webshop-item {
-        max-width: $container-max-width;
-        width: -webkit-fill-available;
-
-        .carousel-container {
-            height: 60vh;
+    .webshop-item-container {
+        height: -webkit-fill-available;
+        overflow: hidden;
+        overflow-y: auto;
+        width: 100vw;
+        
+        .webshop-item {
+            max-width: $container-max-width;
+            width: -webkit-fill-available;
+            
+            .carousel-container {
+                height: 60vh;
+            }
         }
     }
 }

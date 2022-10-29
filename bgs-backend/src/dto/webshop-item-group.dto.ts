@@ -7,6 +7,7 @@ export class WebshopItemGroupDto {
     public price: number = 0
     public description: string = ''
     public elements: WebshopItemDto[] = [ ]
+    public edititems: boolean = false
 
     constructor(entity?: WebshopItemGroupEntity) {
         if (entity) {
