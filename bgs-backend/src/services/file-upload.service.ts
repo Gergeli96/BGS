@@ -51,9 +51,9 @@ export class FileUploadService {
 
     public async deleteFile(fileId: string): Promise<any> {
         try {
-            const response = await this.driveService.files.delete({fileId: fileId})
+            return await this.driveService.files.delete({fileId: fileId})
         } catch (error) {
-            
+            return null
         }
     }
 

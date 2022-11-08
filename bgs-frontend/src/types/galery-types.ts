@@ -8,5 +8,8 @@ export interface IGalery {
     id?: number
     name: string
     description: string
+}
+
+export interface IDetailedGalery extends IGalery {
     files: IGaleryFile[]
 }

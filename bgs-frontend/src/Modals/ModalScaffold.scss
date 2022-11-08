@@ -25,8 +25,14 @@
             position: absolute;
             max-height: 90vh;
             // height: 30rem;
+            overflow: hidden;
             width: 30rem;
             top: 5vh;
+
+            &.full {
+                height: calc(96vh - 1rem);
+                width: calc(96vw - 1rem);
+            }
 
             .modal-header {
                 i {

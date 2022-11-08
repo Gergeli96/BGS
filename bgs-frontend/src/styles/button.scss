@@ -23,6 +23,11 @@
         font-weight: 600;
         color: inherit;
     }
+
+    &.small {
+        padding: 0.1rem 0.35rem;
+        font-size: 0.8rem;
+    }
 }
 
 .btn-info, .btn-primary {
@@ -72,6 +77,20 @@
     background-color: #F4F5F7;
     border-color: $text-color;
     color: $text-color;
+}
+
+
+.btn-grey-thin {
+    @include btn;
+    background-color: $white;
+    border-color: $text-color;
+    color: $text-color;
+}
+.btn-brow-thin {
+    @include btn;
+    background-color: $white;
+    border-color: $brown;
+    color: $brown;
 }
 
 .btn-small {

@@ -16,7 +16,6 @@ import { WebshopFileEntity } from 'src/db/entities/webshop-file.entity';
 import { WebshopElementGroupService } from 'src/services/webshop-item-group.service';
 import { FurnitureCategoryService } from 'src/services/furniture-category.service';
 import { WebshopFilesService } from 'src/services/webshop-file.service';
-import { ProjectFilesService } from 'src/services/projectfiles.service';
 import { WebshopItemService } from 'src/services/webshop-item.service';
 import { FileUploadService } from 'src/services/file-upload.service';
 
@@ -36,7 +35,6 @@ import { FileUploadService } from 'src/services/file-upload.service';
         WebshopElementGroupService,
         FurnitureCategoryService,
         WebshopFilesService,
-        ProjectFilesService,
         WebshopItemService,
         FileUploadService
     ]

@@ -9,7 +9,7 @@ export class GaleryEntity {
     @Column({name: 'name', nullable: false})
     public name: string
 
-    @Column({name: 'description', type: 'varchar', nullable: true})
+    @Column({name: 'description', type: 'text', nullable: true})
     public description: string
 
     @OneToMany(() => GaleryFileEntity, (file) => file.galery)

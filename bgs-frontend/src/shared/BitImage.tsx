@@ -34,10 +34,12 @@ export function BitImage(props: IBitImageProps): IJsxElement {
         let parent = image.parentElement as HTMLElement
 
         if (image.width > image.height) {
-            setStyle({width: `${getMaxSize(parent)}px`, height: 'auto'})
+            // setStyle({width: `${getMaxSize(parent)}px`, height: 'auto'})
+            setStyle({width: '100%', height: 'auto'})
         }
         else {
-            setStyle({width: 'auto', height: `${getMaxSize(parent)}px`})
+            // setStyle({width: 'auto', height: `${getMaxSize(parent)}px`})
+            setStyle({width: 'auto', height: '100%'})
         }
     }
 

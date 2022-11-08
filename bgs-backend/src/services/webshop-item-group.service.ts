@@ -1,17 +1,19 @@
 import { WebshopItemGroupEntity } from "src/db/entities/webshop-item-group.entity";
 import { WebshopItemEntity } from "src/db/entities/webshop-item.entity";
+import { DeleteResult, In, Repository, UpdateResult } from "typeorm";
 import { WebshopItemGroupDto } from "src/dto/webshop-item-group.dto";
 import { BadRequest } from "src/exceptions/badrequest.exception";
+import { WebshopFilesService } from "./webshop-file.service";
 import { BaseEntityService } from "./base-entity.service";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository, UpdateResult } from "typeorm";
 
 export class WebshopElementGroupService extends BaseEntityService<WebshopItemGroupEntity, WebshopItemGroupDto> {
     protected baseDto = new WebshopItemGroupDto()
 
     constructor(
         @InjectRepository(WebshopItemGroupEntity) protected repository: Repository<WebshopItemGroupEntity>,
-        @InjectRepository(WebshopItemEntity) protected itemRepository: Repository<WebshopItemEntity>
+        @InjectRepository(WebshopItemEntity) protected itemRepository: Repository<WebshopItemEntity>,
+        private webshopFileService: WebshopFilesService
     ) {
         super(repository)
     }
@@ -44,6 +46,16 @@ export class WebshopElementGroupService extends BaseEntityService<WebshopItemGro
         else {
             throw new BadRequest()
         }
+    }
+
+    public async deleteEntity(id: number): Promise<DeleteResult> {
+        const items = await this.itemRepository.find({where: {groupid: id}, relations: ['files']})
+        let fileIds: number[] = [ ]
+        items.forEach(x => x.files.forEach(file => fileIds.push(file.id)))
+
+        await this.webshopFileService.deleteEntities(fileIds)
+
+        return await this.repository.delete(id)
     }
 
     protected dtoToEntity(dto: WebshopItemGroupDto, entity: WebshopItemGroupEntity): WebshopItemGroupEntity {

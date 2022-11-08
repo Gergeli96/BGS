@@ -6,6 +6,7 @@ import { WebshopFileDto } from "src/dto/webshop-file.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
+import { In } from 'typeorm';
 
 @Injectable()
 export class WebshopFilesService extends BaseEntityService<WebshopFileEntity, WebshopFileDto> {
@@ -22,6 +23,14 @@ export class WebshopFilesService extends BaseEntityService<WebshopFileEntity, We
         await this.fileUploadService.deleteFile(file.fileid)
 
         return await this.repository.delete(id)
+    }
+
+    public async deleteEntities(ids: number[]): Promise<DeleteResult> {
+        const files = await this.repository.find({where: {id: In(ids)}})
+
+        files.forEach(async x => this.fileUploadService.deleteFile(x.fileid))
+
+        return await this.repository.delete(ids)
     }
 
     public async upload(itemid: number, files: Array<IMulterFile>): Promise<WebshopFileDto[]> {

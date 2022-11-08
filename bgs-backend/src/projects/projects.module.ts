@@ -1,23 +1,25 @@
-import { Module } from '@nestjs/common';
-import { ProjectsController } from './projects.controller';
-import { ProjectsService } from 'src/services/projects.service';
-import { DbModule } from 'src/db/db.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProjectEntity } from 'src/db/entities/project.entity';
-import { BillsController } from './bills.controller';
-import { BillsService } from 'src/services/bill.service';
-import { BillEntity } from 'src/db/entities/bill.entity';
-import { NotesController } from './notes.controller';
-import { NoteEntity } from 'src/db/entities/note.entity';
-import { NoteService } from 'src/services/note.service';
-import { ProjectfilesController } from './projectfiles.controller';
-import { ProjectFilesService } from 'src/services/projectfiles.service';
-import { GaleryService } from 'src/services/galery.service';
-import { GaleryFileService } from 'src/services/galery-file.service';
-import { GaleryEntity } from 'src/db/entities/galerie.entity';
-import { GaleryFileEntity } from 'src/db/entities/galerie-files.entity';
-import { GaleriesController } from './galeries.controller';
+import { DbModule } from 'src/db/db.module';
+import { Module } from '@nestjs/common';
 
+import { ProjectfilesController } from './projectfiles.controller';
+import { GaleriesController } from './galeries.controller';
+import { ProjectsController } from './projects.controller';
+import { BillsController } from './bills.controller';
+import { NotesController } from './notes.controller';
+
+import { GaleryFileService } from 'src/services/galery-file.service';
+import { FileUploadService } from 'src/services/file-upload.service';
+import { ProjectsService } from 'src/services/projects.service';
+import { GaleryService } from 'src/services/galery.service';
+import { BillsService } from 'src/services/bill.service';
+import { NoteService } from 'src/services/note.service';
+
+import { GaleryFileEntity } from 'src/db/entities/galerie-files.entity';
+import { ProjectEntity } from 'src/db/entities/project.entity';
+import { GaleryEntity } from 'src/db/entities/galerie.entity';
+import { BillEntity } from 'src/db/entities/bill.entity';
+import { NoteEntity } from 'src/db/entities/note.entity';
 
 @Module({
     imports: [
@@ -32,8 +34,8 @@ import { GaleriesController } from './galeries.controller';
         GaleriesController
     ],
     providers: [
-        ProjectFilesService,
         GaleryFileService,
+        FileUploadService,
         ProjectsService,
         GaleryService,
         BillsService,

@@ -1,45 +1,5 @@
 .home-page-galery-container {
-    .home-page-galeries-preview {
-        i {
-            font-size: 2rem;
-        }
-
-        .home-galery-image {
-            width: -webkit-fill-available;
-            background-repeat: no-repeat !important;
-            background-position: center !important;
-            display: none;
-            height: 65vh;
-
-            &[attr-active="true"] {
-                display: block;
-                animation-name: showGaleryPreview;
-                animation-duration: 2s;
-            }
-
-            &[attr-active="false"] + [attr-active="true"] {
-                display: block;
-                animation-name: hideGaleryPreview;
-                animation-duration: 1s;
-            }
-        }
-    }
-}
-
-@keyframes showGaleryPreview {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes hideGaleryPreview {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
+    .carousel-container {
+        height: 65vh;
     }
 }

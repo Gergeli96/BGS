@@ -11,6 +11,7 @@ export interface IAdminSidebarLink {
 
 export function AdminSidebar(): IJsxElement {
     const links: IAdminSidebarLink[] = [
+        {name: 'Galéria', url: '/admin/galerieform'},
         {name: 'Webshop csoport', url: '/admin/webshopitemgroup'},
         {name: 'Webshop csoport elemek', url: '/admin/webshopitemgroups'},
         {name: 'Webshop elem', url: '/admin/webshopitem'},
