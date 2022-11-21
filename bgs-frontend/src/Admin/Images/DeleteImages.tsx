@@ -1,5 +1,6 @@
 import { IDetailedWebshopItem, IWebshopFile, IWebshopItem } from "../../types/webshop-types";
 import { ISelectOption, SelectOption } from "../../BitForm/bitform-types";
+import { getImageLink } from "../../helpers/drive-image-helper";
 import { createSignal, For, onMount, Show } from "solid-js";
 import { IJsxElement } from "../../types/general-types";
 import { Delete, Get } from "../../helpers/http";
@@ -32,7 +33,7 @@ export function DeleteImages(): IJsxElement {
     }
 
     function getFileUrl(file: IWebshopFile): string {
-        return `http://drive.google.com/uc?export=view&id=${file.fileid}`
+        return getImageLink(file.fileid)
     }
 
     function deleteImage(id: number): void {

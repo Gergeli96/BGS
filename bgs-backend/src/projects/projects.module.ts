@@ -29,9 +29,9 @@ import { NoteEntity } from 'src/db/entities/note.entity';
     controllers: [
         ProjectfilesController,
         ProjectsController,
+        GaleriesController,
         BillsController,
-        NotesController,
-        GaleriesController
+        NotesController
     ],
     providers: [
         GaleryFileService,

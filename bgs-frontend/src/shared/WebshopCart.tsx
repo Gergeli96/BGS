@@ -1,4 +1,5 @@
-import { IDetailedWebshopItem, IWebshopFile } from "../types/webshop-types";
+import { getImageLinkFromFileList } from "../helpers/drive-image-helper";
+import { IDetailedWebshopItem } from "../types/webshop-types";
 import { navigate } from "../helpers/navigation-helper";
 import { createSignal, For, onMount } from "solid-js";
 import { IJsxElement } from "../types/general-types";
@@ -21,16 +22,12 @@ export function WebshopCart(): IJsxElement {
     onMount(() => getItemsInCart())
 
     function getItemsInCart(): void {
-        Post<IDetailedWebshopItem[]>('webshop/cartItems', {items: cart()})
+        Post<IDetailedWebshopItem[]>('webshop/cartItems', {items: cart()}, {showNotification: false})
             .then(response => {
                 setItems(response)
                 recalculatePrice()
             })
             .catch(error => { })
-    }
-
-    function getImage(files: IWebshopFile[]): string {
-        return files?.length > 0 ? `http://drive.google.com/uc?export=view&id=${files[0].fileid}` : 'src/assets/image-not-found.png'
     }
 
     function recalculatePrice(): void {
@@ -62,7 +59,7 @@ export function WebshopCart(): IJsxElement {
                         <For each={items()}>{x =>
                             <li class="d-flex justify-between cursor-pointer" onClick={() => openItem(x.id as number)}>
                                 <div class="d-flex column info-container">
-                                    <div class="d-flex">
+                                    <div class="header d-flex">
                                         <h3>{x.name}</h3>
                                         <button class="btn-danger small ml-4" onClick={$event => removeItemFromCart($event, x.id as number)}>Eltávolítás a kosárból
                                             <i class="bi bi-cart-x-fill ml-2"></i>
@@ -73,7 +70,7 @@ export function WebshopCart(): IJsxElement {
                                 </div>
 
                                 <div class="image-preview">
-                                    <BitImage src={getImage(x.files)} />
+                                    <BitImage src={getImageLinkFromFileList(x.files)} />
                                 </div>
                             </li>
                         }</For>

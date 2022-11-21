@@ -14,6 +14,12 @@
                 height: 5rem;
                 
                 .info-container {
+                    .header {
+                        button {
+                            width: fit-content;
+                        }
+                    }
+
                     p {
                         overflow: hidden;
                     }
@@ -21,6 +27,32 @@
 
                 .image-preview {
                     width: 7rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .webshop-cart-container {
+        .page-content {
+            ul {
+                li {
+                    height: 10rem;
+                
+                    .info-container {
+                        .header {
+                            flex-direction: column;
+
+                            button {
+                                margin-left: unset;
+                            }
+                        }
+                    }
+
+                    .image-preview {
+                        width: 13rem;
+                    }
                 }
             }
         }

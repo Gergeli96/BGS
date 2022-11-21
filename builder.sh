@@ -6,12 +6,12 @@ npm install
 
 npm run build
 
-cd ../bgs-angular
+cd ../bgs-frontend
 
 npm install
 
 npm run build
 
-# cd ../bgs-backend/dist
+rm -r ../bgs-backend/dist/frontend/*
 
-# node main.js
+cp -r ./dist/* ../bgs-backend/dist/frontend

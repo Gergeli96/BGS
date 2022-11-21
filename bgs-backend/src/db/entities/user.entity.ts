@@ -15,6 +15,9 @@ export class UserEntity {
     @Column({type: 'varchar', nullable: false}) 
     public email: string
 
+    @Column({type: 'varchar', nullable: true, default: ''}) 
+    public avatar: string
+
     @BeforeInsert()
     public async hashPassword() {
         this.password = await bcrypt.hash(this.password, 10);  

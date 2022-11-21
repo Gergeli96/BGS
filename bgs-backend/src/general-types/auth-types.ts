@@ -7,6 +7,8 @@ export interface IWhoAmI {
     token: string | null
     id: number | null
     loggedin: boolean
+    email: string | null
+    avatar: string | null
 }
 
 export interface IRegistrationStatus {

@@ -15,6 +15,7 @@ export function WebshopItem(): IJsxElement {
     const [connecting, setConnecting] = createSignal<IDetailedWebshopItem[]>([])
     const [images, setImages] = createSignal<IGaleryCarouselImage[]>([])
     const links: INavbarLink[] = [
+        {text: 'Kezdőlap', onclick: () => navigate(navigator, '/')},
         {text: 'Webshop', onclick: () => navigate(navigator, '/webshop')}
     ]
     const navigator = useNavigate()

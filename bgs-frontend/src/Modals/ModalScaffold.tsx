@@ -25,7 +25,11 @@ export interface IModalButton {
 export function ModalScaffold(props: IModalScaffoldProps): IJsxElement {
     let modalContainerElement: HTMLDivElement | undefined
 
-    onMount(() => modalContainerElement?.querySelector('.modal-content')?.classList.add(props.size ?? ''))
+    onMount(() => {
+        if (props.size && props.size?.length > 0) {
+            modalContainerElement?.querySelector('.modal-content')?.classList?.add(props.size ?? '')
+        }
+    })
 
     function close(): void {
         modalContainerElement?.remove()

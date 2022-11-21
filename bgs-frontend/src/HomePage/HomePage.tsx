@@ -32,7 +32,7 @@ export function HomePage(): IJsxElement {
 
             <div class="home-image d-flex column justify-center align-center">
                 <div class="company-logo-container">
-                    <img src="src/assets/bgs-transparent.png" alt="company logo" />
+                    <img src="/src/assets/bgs-transparent.png" alt="company logo" />
                 </div>
                 <h1 class="company-name mt-2">Beegees carpentry</h1>
             </div>

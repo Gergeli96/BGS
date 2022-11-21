@@ -30,8 +30,9 @@
             top: 5vh;
 
             &.full {
-                height: calc(96vh - 1rem);
-                width: calc(96vw - 1rem);
+                height: calc(96vh - 2rem);
+                width: calc(96vw - 2rem);
+                top: 2rem;
             }
 
             .modal-header {
@@ -42,6 +43,7 @@
 
             .modal-body {
                 height: -webkit-fill-available;
+                width: -webkit-fill-available;
             }
         }
     }

@@ -29,7 +29,7 @@ export function HomePageGalery(): IJsxElement {
     }
 
     return (
-        <div id="homepage-galery" class="home-page-galery-container d-flex column">
+        <div id="homepage-galery" class="home-page-galery-container d-flex column pt-4 pb-4">
             <div class="carousel-container">
                 <GaleryCarousel images={galeries()} />
             </div>

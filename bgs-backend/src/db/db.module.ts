@@ -1,32 +1,25 @@
 import { WebshopItemGroupEntity } from './entities/webshop-item-group.entity';
-import { WebshopItemEntity } from './entities/webshop-item.entity';
 import { FurnitureCategoryEntity } from './entities/furniture-category';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { WebshopItemEntity } from './entities/webshop-item.entity';
 import { WebshopFileEntity } from './entities/webshop-file.entity';
 import { GaleryFileEntity } from './entities/galerie-files.entity';
-import { ConfigModule, registerAs } from '@nestjs/config';
 import { ProjectEntity } from './entities/project.entity';
 import { GaleryEntity } from './entities/galerie.entity';
-import { EnvDbConfig } from 'src/helpers/env-dbconfig';
 import { BillEntity } from './entities/bill.entity';
 import { NoteEntity } from './entities/note.entity';
 import { UserEntity } from './entities/user.entity';
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 
-export default registerAs('database', () => ({
-    DATABASE: process.env.DATABASE
-}));
-
 const dbConnection = (): TypeOrmModuleOptions => {
-    const envConfig = new EnvDbConfig()
-
     return {
         type: 'mysql',
-        host: envConfig.host,
-        port: envConfig.port,
-        username: envConfig.username,
-        password: envConfig.password,
-        database: envConfig.database,
+        host: process.env.DBHOST,
+        port: parseInt(process.env.DBPORT),
+        username: process.env.DBUSERNAME,
+        password: process.env.DBPASSWORD,
+        database: process.env.DATABASE,
         entities: [ProjectEntity, BillEntity, NoteEntity, UserEntity, GaleryFileEntity,
             GaleryEntity, FurnitureCategoryEntity, WebshopItemGroupEntity, WebshopItemEntity,
             WebshopFileEntity],

@@ -15,7 +15,6 @@ export function FileInput(props: IFileInputProps): IJsxElement {
     onMount(() => props.control.subscribe(value => onControlValueChange(value)))
 
     function onControlValueChange(value: any): void {
-        console.log('Value change!')
         if (!Array.isArray(value) || value.length == 0) {
             setAttachments([])
         }

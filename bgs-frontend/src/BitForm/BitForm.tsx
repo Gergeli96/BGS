@@ -72,6 +72,9 @@ export function BitControlElement(props: IBitControlProps): IJsxElement {
                 <Match when={props.config.type == BitControlType.file}>
                     <FileInput control={props.config} onChange={value => props.config.setValue(value)}></FileInput>
                 </Match>
+                <Match when={props.config.type == BitControlType.password}>
+                    <input type="password" name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)} />
+                </Match>
             </Switch>
             <span>{props.config.suffix}</span>
         </div>

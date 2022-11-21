@@ -9,8 +9,10 @@
     .galery-images-container {
         height: -webkit-fill-available;
         width: -webkit-fill-available;
+        max-width: calc(100% - 100px);
 
         img {
+            // max-width: -webkit-fill-available;
             display: none;
             opacity: 0;
 

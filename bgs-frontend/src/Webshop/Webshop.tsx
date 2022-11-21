@@ -5,6 +5,7 @@ import { WebshopItemPreview } from "./WebshopItemPreview";
 import { navigate } from "../helpers/navigation-helper";
 import { INavbarLink, Navbar } from "../shared/Navbar";
 import { IJsxElement } from "../types/general-types";
+import { BitNumber } from "../helpers/number-helper";
 import { useNavigate } from "@solidjs/router";
 import { Get } from "../helpers/http";
 import './Webshop.scss';
@@ -12,6 +13,7 @@ import './Webshop.scss';
 export function Webshop(): IJsxElement {
     const [categories, setCategories] = createSignal<IFurnitureCategory[]>([])
     const [items, setItems] = createSignal<IDetailedWebshopItem[]>([])
+    const [categoryId, setCategoryId] = createSignal<number>(0)
     let categoryListElement: HTMLUListElement | undefined
     const navigator = useNavigate()
     const navLinks: INavbarLink[] = [
@@ -24,16 +26,16 @@ export function Webshop(): IJsxElement {
     })
 
     function getCategoryIdQuery(): string {
-        const categryId = categoryListElement?.querySelector('.active')?.getAttribute('data-id') ?? null
-
-        return categryId == null ? '' : `?groupid=${categryId}&t=${Date.parse(new Date() as any)}`
+        return categoryId() == null ? '' : `?groupid=${categoryId()}&t=${Date.parse(new Date() as any)}`
     }
 
-    function changeActiveCategory(target: HTMLLIElement): void {
+    function changeActiveCategory(categoryId: number): void {
+        const target = categoryListElement?.querySelector(`li[data-id="${categoryId}"]`)
         const activeCategory = categoryListElement?.querySelector('.active')
         if (activeCategory != target) {
             activeCategory?.classList.remove('active')
-            target.classList.add('active')
+            target?.classList.add('active')
+            setCategoryId(categoryId)
 
             getWebshopItems()
         }
@@ -58,11 +60,18 @@ export function Webshop(): IJsxElement {
             <div class="page-content d-flex">
                 <div class="categories p-4">
                     <ul ref={categoryListElement}>
-                        <li class="active cursor-pointer" onClick={e => changeActiveCategory(e.currentTarget)}>Összes</li>
+                        <li class="active cursor-pointer" data-id="0" onClick={e => changeActiveCategory(0)}>Összes</li>
                         <For each={categories()}>{x =>
-                            <li class="cursor-pointer" data-id={x.id} onClick={e => changeActiveCategory(e.currentTarget)}>{x.name}</li>
+                            <li class="cursor-pointer" data-id={x.id} onClick={e => changeActiveCategory(x.id)}>{x.name}</li>
                         }</For>
                     </ul>
+
+                    <select value={categoryId()} onChange={e => changeActiveCategory(BitNumber.parseInt(e.currentTarget.value) as number)}>
+                        <option value="0">Összes</option>
+                        <For each={categories()}>{x =>
+                            <option value={x.id}>{x.name}</option>
+                        }</For>
+                    </select>
                 </div>
 
                 <div class="items p-4 pl-unset">

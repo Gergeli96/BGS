@@ -10,8 +10,8 @@ export function HomePageFooter(): IJsxElement {
             </div>
 
             <div class="info-container d-flex">
-                <span class="info">Tel: 00 00 000 0000</span>
-                <span class="info">E-mail: email@email.com</span>
+                <span>Tel: 00 00 000 0000</span>
+                <span>E-mail: email@email.com</span>
             </div>
         </footer>
     )

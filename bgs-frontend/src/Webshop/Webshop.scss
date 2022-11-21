@@ -4,18 +4,51 @@
     width: 100vw;
 
     .page-content {
-        width: 100vw;
         height: calc(100vh - 56px);
+        width: 100vw;
 
         .categories {
             min-width: 17rem;
             width: 17rem;
+
+            ul {
+                display: flex;
+            }
+
+            select {
+                display: none;
+            }
         }
         
         .items {
             width: -webkit-fill-available;
             overflow: hidden;
             overflow-y: auto;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .webshop-page-container {
+        .page-content {
+            flex-direction: column;
+
+             .categories {
+                width: -webkit-fill-available;
+                min-width: unset;
+
+                ul {
+                    display: none;
+                }
+
+                select {
+                    display: block;
+                }
+             }
+            
+            .items {
+                width: 100%;
+            }
         }
     }
 }

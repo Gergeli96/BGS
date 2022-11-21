@@ -1,3 +1,4 @@
+import { getImageLinkFromFileList } from "../helpers/drive-image-helper";
 import { IDetailedGalery } from "../types/galery-types";
 import { navigate } from "../helpers/navigation-helper";
 import { INavbarLink, Navbar } from "../shared/Navbar";
@@ -28,13 +29,6 @@ export function Galeries(): IJsxElement {
             .catch(error => { })
     }
 
-    function getFileSrc(galerie: IDetailedGalery): string {
-        if (Array.isArray(galerie.files) && galerie.files.length > 0) {
-            return `http://drive.google.com/uc?export=view&id=${galerie.files[0].fileid}`
-        }
-        else return 'src/assets/image-not-found.png'
-    }
-
     function openGaleriemodal(id: number): void {
         openModal(() => GalerieModal({galerieid: id}))
     }
@@ -48,7 +42,7 @@ export function Galeries(): IJsxElement {
                     <For each={galeries()}>{x =>
                         <div class="col-12 pb-4">
                             <div class="d-grid">
-                                <div class="col-6 d-flex column">
+                                <div class="col-md-6 col-sm-12 d-flex column">
                                     <h3 class="pb-2">{x.name}</h3>
                                     <p>{x.description}</p>
                                     <div class="d-flex justify-start pt-4">
@@ -56,8 +50,8 @@ export function Galeries(): IJsxElement {
                                     </div>
                                 </div>
 
-                                <div class="image-container d-flex justify-center col-6 width-100">
-                                    <BitImage src={getFileSrc(x)}></BitImage>
+                                <div class="image-container d-flex justify-center col-md-6 col-sm-12 width-100">
+                                    <BitImage src={getImageLinkFromFileList(x.files)}></BitImage>
                                 </div>
                             </div>
                         </div>

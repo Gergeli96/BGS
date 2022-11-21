@@ -13,7 +13,8 @@ export enum BitControlType {
     checkbox,
     file,
     textarea,
-    number
+    number,
+    password
 }
 
 export interface IBitControl<T = any> {

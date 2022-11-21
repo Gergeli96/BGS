@@ -21,14 +21,14 @@ nav {
             display: none;
             color: $white;
         }
+    }
 
-        .nav-links {
-            .nav-link {
-                padding-right: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                color: $white;
-            }
+    .nav-links {
+        .nav-link {
+            padding-right: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: $white;
         }
     }
 }
@@ -59,13 +59,13 @@ nav {
         .left-side {
             background-size: auto 100vh;
 
-            .nav-links {
-                display: none;
-            }
-
             .bi-list {
                 display: block;
             }
+        }
+
+        .nav-links {
+            display: none;
         }
     }
 }

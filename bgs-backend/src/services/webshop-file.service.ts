@@ -28,7 +28,7 @@ export class WebshopFilesService extends BaseEntityService<WebshopFileEntity, We
     public async deleteEntities(ids: number[]): Promise<DeleteResult> {
         const files = await this.repository.find({where: {id: In(ids)}})
 
-        files.forEach(async x => this.fileUploadService.deleteFile(x.fileid))
+        files.forEach(async x => await this.fileUploadService.deleteFile(x.fileid))
 
         return await this.repository.delete(ids)
     }

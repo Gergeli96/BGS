@@ -1,5 +1,5 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
 import { IJsxElement } from "../types/general-types";
+import { createSignal, onMount } from "solid-js";
 
 export interface IBitImageProps {
     attributes?: {[key: string]: string}
@@ -33,13 +33,11 @@ export function BitImage(props: IBitImageProps): IJsxElement {
         let image = imgElement as HTMLImageElement
         let parent = image.parentElement as HTMLElement
 
-        if (image.width > image.height) {
-            // setStyle({width: `${getMaxSize(parent)}px`, height: 'auto'})
-            setStyle({width: '100%', height: 'auto'})
+        if (parent.clientWidth > parent.clientHeight) {
+            setStyle({width: 'fit-content', height: '100%'})
         }
         else {
-            // setStyle({width: 'auto', height: `${getMaxSize(parent)}px`})
-            setStyle({width: 'auto', height: '100%'})
+            setStyle({width: '100%', height: 'fit-content'})
         }
     }
 

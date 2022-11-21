@@ -1,0 +1,17 @@
+.galerie-delete-list {
+    padding: 0.5rem 1rem;
+    height: 5rem;
+
+    p {
+        text-overflow: hidden;
+    }
+
+    .image-container {
+        height: 5rem;
+        width: 7rem;
+
+        .bi-trash3 {
+            font-size: 1.5rem;
+        }
+    }
+}

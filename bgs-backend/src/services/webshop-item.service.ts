@@ -78,8 +78,10 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
         const items = await this.repository.find({where: {id: id}, relations: ['files']})
         let fileIds: number[] = [ ]
         items.forEach(x => x.files.forEach(file => fileIds.push(file.id)))
-
-        await this.webshopFileService.deleteEntities(fileIds)
+        
+        if (fileIds.length > 0) {
+            await this.webshopFileService.deleteEntities(fileIds)
+        }
 
         return await this.repository.delete(id)
     }

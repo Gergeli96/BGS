@@ -14,7 +14,7 @@ export interface IHomePageCardProps {
 export function HomePageCard(props: IHomePageCardProps): IJsxElement {
 
     function imageSrc(imgName: string): string {
-        return `src/assets/${imgName}`
+        return `/src/assets/${imgName}`
     }
 
     return (

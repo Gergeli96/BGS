@@ -36,6 +36,8 @@ export class GaleryService {
     }
 
     public async deleteGalery(id: number): Promise<any> {
+        await this.galerieFileService.deleteFiles(id)
+
         return await this.galeriesRepository.delete(id)
     }
 
