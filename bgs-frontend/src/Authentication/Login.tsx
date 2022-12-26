@@ -17,7 +17,7 @@ export function Login(): IJsxElement {
     const navigator = useNavigate()
 
     function login(): void {
-        Post<IWhoAmI>('auth/login', controls.value)
+        controls.save<IWhoAmI>(Post('auth/login', controls.value))
             .then(response => {
                 auth.login(response)
                 navigate(navigator, '/admin/galerieform')

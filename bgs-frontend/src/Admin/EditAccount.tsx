@@ -14,7 +14,7 @@ export function EditAccount(): IJsxElement {
     ])
 
     function save(): void {
-        Put<IWhoAmI>('auth/editself', controls.valueAsFormData)
+        controls.save<IWhoAmI>(Put('auth/editself', controls.valueAsFormData))
             .then(response => {
                 auth?.login(response)
                 controls.setValue({username: response.username, email: response.email, avatar: ''})

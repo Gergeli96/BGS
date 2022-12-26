@@ -4,6 +4,7 @@ import { TOKEN } from "../Authentication/AuthProvider"
 import { Notification } from './notification-helper'
 import { DeleteModal } from "../Modals/DeleteModal"
 import { openModal } from "../Modals/modal.service"
+import { HttpError } from "../types/http-types"
 
 export interface IHttpOptions {
     showNotification?: boolean
@@ -89,13 +90,14 @@ function makeRequest<T>(callback: Promise<Response>, showNotification: boolean):
     return new Promise((resolve, reject) => {
         if (showNotification) notification = addNotification({text: 'Betöltés', type: NotificationType.async})
 
-        callback
-            .then(response => {
+        try {
+            callback
+            .then(async response => {
                 if (response.ok) {
                     return response.json()
                 }
                 else {
-                    throw new Error(response.statusText)
+                    throw new HttpError(response.statusText, await response.json() as any)
                 }
             })
             .then((data: T) => {
@@ -106,5 +108,9 @@ function makeRequest<T>(callback: Promise<Response>, showNotification: boolean):
                 notification?.deleteAsync(false)
                 reject(error)
             })
+        } catch (error) {
+            notification?.deleteAsync(false)
+            reject(error)
+        }
     })
 }

@@ -20,7 +20,8 @@ export function AdminSidebar(): IJsxElement {
         {name: 'Webshop csoport elemek', url: '/admin/webshopitemgroups'},
         {name: 'Webshop elem', url: '/admin/webshopitem'},
         {name: 'Webshop elemek', url: '/admin/webshopitems'},
-        {name: 'Webshop képek kezelése', url: '/admin/editimages'}
+        {name: 'Webshop képek kezelése', url: '/admin/editimages'},
+        {name: 'Bútor kategória', url: '/admin/furniturecategory'}
     ]
     const [avatar, setAvatar] = createSignal<string>('')
     let linksContainer: HTMLDivElement | undefined

@@ -1,6 +1,7 @@
 import { getControlDefaultValue } from "../helpers/form-helpers"
 import { Accessor, createSignal, Setter } from "solid-js"
 import { IJsxElement } from "../types/general-types"
+import { IHttpError } from "../types/http-types"
 
 export interface ISelectOption {
     name: string
@@ -56,6 +57,9 @@ export class BitControl implements Omit<IBitControl, 'options'> {
     public type?: BitControlType
     suffix?: string | IJsxElement
 
+    public errors: Accessor<string[] | undefined>
+    private errorsSetter: Setter<string[]>
+
     constructor(public config: IBitControl) {
         let optionSignal = createSignal<ISelectOption[]>()
         this.options = optionSignal[0]
@@ -64,6 +68,10 @@ export class BitControl implements Omit<IBitControl, 'options'> {
         let valueSignal = createSignal<any>(getControlDefaultValue(config))
         this.value = valueSignal[0]
         this.valueSetter = valueSignal[1]
+
+        let errorSignal = createSignal<string[]>([])
+        this.errors = errorSignal[0]
+        this.errorsSetter = errorSignal[1]
 
         if (Array.isArray(config.options)) this.setOptions(config.options)
         this.label = config.label
@@ -87,6 +95,16 @@ export class BitControl implements Omit<IBitControl, 'options'> {
 
     public subscribe(subscription: IControlSubscription): void {
         this.subscriptions.push(subscription)
+    }
+
+    public setError(error: string | string[]): void {
+        if (error === null || error === undefined || error?.length === 0) {
+            this.errorsSetter([])
+        }
+        else {   
+            if (typeof error === 'string') error = [error]
+            this.errorsSetter(error as string[])
+        }
     }
 }
 
@@ -131,5 +149,21 @@ export class BitControlGroup<T = any> {
 
     public empty(): void {
         this.controls.forEach(control => control.setValue(getControlDefaultValue(control.config)))
+    }
+
+    public save<T>(callback: Promise<any>): Promise<T> {
+        this.controls.forEach(x => x.setError([]))
+
+        return new Promise((resolve, reject) => {
+            callback
+                .then(response => resolve(response))
+                .catch((error: IHttpError) => {
+                    if (error.errors) {
+                        Object.keys(error.errors)
+                            .forEach(key => this.get(key as any)?.setError((error.errors as any)[key]))
+                    }
+                    reject(error)
+                })
+        })
     }
 }

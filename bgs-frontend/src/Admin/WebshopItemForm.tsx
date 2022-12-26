@@ -84,7 +84,7 @@ export function WebshopItemForm(): IJsxElement {
         const formData = controls.valueAsFormData
         formData.set('id', params.id ?? '')
 
-        Put('webshopitems', formData)
+        controls.save(Put('webshopitems', formData))
             .then(response => navigate(navigator, '/webshopitem'))
             .catch(error => { })
     }

@@ -42,7 +42,7 @@ export function WebshopItemGroupForm(): IJsxElement {
     function edit(): void {
         let id = params.id ?? null
 
-        Put('webshopitemgroups', {...controls.value, id: id})
+        controls.save(Put('webshopitemgroups', {...controls.value, id: id}))
             .then(response => navigate(navigator, '/webshopitemgroup'))
             .catch(error => { })
     }

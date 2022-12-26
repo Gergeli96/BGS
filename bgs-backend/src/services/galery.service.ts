@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm"
 import { GaleryDto } from "src/dto/galery.dto"
 import { Injectable } from "@nestjs/common"
 import { Repository } from "typeorm"
+import { GalerieValidator } from "src/validators/galerieValidator"
 
 @Injectable()
 export class GaleryService {
@@ -28,6 +29,8 @@ export class GaleryService {
     }
     
     public async createGalery(model: GaleryDto, files: IMulterFile[]): Promise<GaleryDto> {
+        new GalerieValidator(model, files).validate()
+
         const galery = await this.galeriesRepository.save(this.galeryDtoToEntity(model, new GaleryEntity()))
 
         await this.galerieFileService.create(galery.id, files)

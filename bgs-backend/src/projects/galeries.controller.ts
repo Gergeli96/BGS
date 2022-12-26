@@ -30,10 +30,6 @@ export class GaleriesController {
     @UseGuards(AuthGuard('jwt')) 
     @UseInterceptors(FilesInterceptor('files'))
     public async create(@UploadedFiles() files: Array<IMulterFile>, @Body() body: GaleryDto): Promise<GaleryDto> {
-        if (files.length < 1) {
-            throw new BadRequest()
-        }
-
         return await this.galeryService.createGalery(body, files)
     }
 

@@ -1,3 +1,4 @@
+import { FurnitureCategoryForm } from './Admin/FurnitureCategoryForm';
 import { WebshopItemGroupForm } from './Admin/WebshopItemGroupForm';
 import { WebshipItemGroups } from './Admin/WebshopItemGroups';
 import { AuthProvider } from './Authentication/AuthProvider';
@@ -45,6 +46,7 @@ const App: Component = () => {
                         <Route path="/webshopitemgroups" component={WebshipItemGroups} />
                         <Route path="/editimages" component={EditImages} />
                         <Route path="/editaccount" component={EditAccount} />
+                        <Route path="/furniturecategory" component={FurnitureCategoryForm} />
                     </Route>
                 </Routes>
 

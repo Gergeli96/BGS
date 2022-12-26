@@ -53,30 +53,35 @@ export function BitControlElement(props: IBitControlProps): IJsxElement {
     }
 
     return (
-        <div class="d-flex">
-            <Switch fallback={defaultInput()}>
-                <Match when={props.config.type == BitControlType.select}>
-                    <select name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)}>
-                        <For each={props.config.options()}>{x => <option value={x.value}>{x.name}</option>}</For>
-                    </select>
-                </Match>
-                <Match when={props.config.type == BitControlType.checkbox}>
-                    <input type="checkbox" name={props.config.name as any} checked={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.checked)} />
-                </Match>
-                <Match when={props.config.type == BitControlType.number}>
-                    <input type="number" name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)} />
-                </Match>
-                <Match when={props.config.type == BitControlType.textarea}>
-                    <textarea rows={3} name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)}></textarea>
-                </Match>
-                <Match when={props.config.type == BitControlType.file}>
-                    <FileInput control={props.config} onChange={value => props.config.setValue(value)}></FileInput>
-                </Match>
-                <Match when={props.config.type == BitControlType.password}>
-                    <input type="password" name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)} />
-                </Match>
-            </Switch>
-            <span>{props.config.suffix}</span>
+        <div class="d-flex column">
+            <div class="d-flex">
+                <Switch fallback={defaultInput()}>
+                    <Match when={props.config.type == BitControlType.select}>
+                        <select name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)}>
+                            <For each={props.config.options()}>{x => <option value={x.value}>{x.name}</option>}</For>
+                        </select>
+                    </Match>
+                    <Match when={props.config.type == BitControlType.checkbox}>
+                        <input type="checkbox" name={props.config.name as any} checked={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.checked)} />
+                    </Match>
+                    <Match when={props.config.type == BitControlType.number}>
+                        <input type="number" name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)} />
+                    </Match>
+                    <Match when={props.config.type == BitControlType.textarea}>
+                        <textarea rows={3} name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)}></textarea>
+                    </Match>
+                    <Match when={props.config.type == BitControlType.file}>
+                        <FileInput control={props.config} onChange={value => props.config.setValue(value)}></FileInput>
+                    </Match>
+                    <Match when={props.config.type == BitControlType.password}>
+                        <input type="password" name={props.config.name as any} value={props.config.value()} onInput={(e: any) => props.config.setValue(e.target.value)} />
+                    </Match>
+                </Switch>
+                <span>{props.config.suffix}</span>
+            </div>
+            <div class="d-flex column">
+                <For each={props.config.errors()}>{x => <div class="danger pl-4">{x}</div>}</For>
+            </div>
         </div>
     )
 }

@@ -19,7 +19,7 @@ export function UploadImages(): IJsxElement {
     }
 
     function upload(): void {
-        Post('webshopfiles', controls.valueAsFormData)
+        controls.save(Post('webshopfiles', controls.valueAsFormData))
             .then(() => controls.empty())
             .catch(error => { })
     }

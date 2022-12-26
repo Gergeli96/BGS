@@ -1,6 +1,6 @@
 import { WebshopItemDto, WebshopItemOverViewDto } from "src/dto/webshop-item.dto";
+import { WebshopItemValidator } from "src/validators/webshopItemValidator";
 import { WebshopItemEntity } from "src/db/entities/webshop-item.entity";
-import { BadRequest } from "src/exceptions/badrequest.exception";
 import { IMulterFile } from "src/interfaces/file.interfaces";
 import { WebshopFilesService } from "./webshop-file.service";
 import { BaseEntityService } from "./base-entity.service";
@@ -64,9 +64,7 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
     }
     
     public async saveEntiy(files: Array<IMulterFile>, model: WebshopItemDto): Promise<WebshopItemDto> {
-        if (files.length < 1) {
-            throw new BadRequest()
-        }
+        new WebshopItemValidator(model, files).validate()
         
         let element = await this.repository.save(this.dtoToEntity(model, new WebshopItemEntity()))
         await this.webshopFileService.upload(element.id, files)

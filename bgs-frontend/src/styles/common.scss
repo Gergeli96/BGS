@@ -4,11 +4,19 @@
     color: $danger;
 }
 
+.danger-hover:hover {
+    color: $danger;
+}
+
 .success {
     color: $success;
 }
 
 .warning {
+    color: $warning;
+}
+
+.warning-hover:hover {
     color: $warning;
 }
 

@@ -1,5 +1,6 @@
 import { ModelValidationException } from "src/exceptions/modelvalidation.exception"
 import { IKeyOf } from "src/general-types/general-types"
+import { IMulterFile } from "src/interfaces/file.interfaces"
 
 export class BaseValidator<T> {
     private errors = new Map<IKeyOf<T>, string[]>()
@@ -26,6 +27,12 @@ export class BaseValidator<T> {
     protected ruleFor(key: IKeyOf<T>, validatorCallback: (model: T) => boolean, message: string): void {
         if (validatorCallback(this.model)) {
             this.setError(key, message)
+        }
+    }
+
+    protected hasFiles(files: IMulterFile[]): void {
+        if (!Array.isArray(files) || files?.length < 1) {
+            this.setError('files' as any, 'Legalább egy file kötelező!')
         }
     }
 

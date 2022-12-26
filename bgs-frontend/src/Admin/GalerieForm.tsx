@@ -11,7 +11,7 @@ export function GalerieForm(): IJsxElement {
     ])
 
     function save(): void {
-        Post('galeries/upload', controls.valueAsFormData)
+        controls.save(Post('galeries/upload', controls.valueAsFormData))
             .then(response => controls.empty())
             .catch(error => { })
     }

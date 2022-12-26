@@ -23,7 +23,7 @@ export function HomePage(): IJsxElement {
     const navigator = useNavigate()
 
     function scrollTo(elementId: string): void {
-        document.querySelector(`.home-page-container #${elementId}`)?.scrollIntoView()
+        document.querySelector(`.home-page-container #${elementId}`)?.scrollIntoView({behavior: 'smooth'})
     }
 
     return (
