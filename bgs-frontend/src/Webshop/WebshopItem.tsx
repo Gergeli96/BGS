@@ -6,6 +6,8 @@ import { useNavigate, useParams } from "@solidjs/router";
 import { navigate } from "../helpers/navigation-helper";
 import { INavbarLink, Navbar } from "../shared/Navbar";
 import { IJsxElement } from "../types/general-types";
+import { PriceTag } from "../shared/Pricetag";
+import { Stock } from "../shared/Stock";
 import { cart, setCart } from "../App";
 import { Get } from "../helpers/http";
 import './WebshopItem.scss';
@@ -48,12 +50,14 @@ export function WebshopItem(): IJsxElement {
                 </div>
 
                 <h3 class="col-12 pt-4">{item()?.name} <small class="ml-2">{item().design}</small></h3>
-                <h4 class="col-12 pt-2">{item()?.price} Ft</h4>
+
+                <h4 class="col-12 pt-2"><PriceTag price={item().price} discount={item().discount} /></h4>
 
                 <div class="col-12 pt-4">{item()?.description}</div>
                 
                 <div class="col-12 pt-4">
-                    <button class="btn-success" onClick={addToCart}><i class="bi bi-cart mr-1"></i>Kosárba</button>
+                    {/* <button class="btn-success" onClick={addToCart}><i class="bi bi-cart mr-1"></i>Kosárba</button> */}
+                    <Stock itemId={item().id as number} stock={item()?.stock}/>
                 </div>
 
                 <Show when={connecting().length > 0}>

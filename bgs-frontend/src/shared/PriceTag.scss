@@ -1,0 +1,19 @@
+@import '../styles/variables.scss';
+
+.discount {
+    padding: 0.2rem 0.5rem 0.2rem 1rem;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+    background-color: $danger;
+    color: #fff;
+}
+
+.original-price {
+    text-decoration: line-through;
+    font-size: 1.3rem;
+    padding: 0 1rem;
+}
+
+.discounted-price {
+    font-size: 1.3rem;
+}

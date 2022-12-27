@@ -26,6 +26,12 @@ export class WebshopItemEntity {
     @Column({name: 'description', type: 'text', nullable: false})
     public description: string
 
+    @Column({name: 'discount', type: 'int', nullable: true, default: 0})
+    public discount: number | null
+
+    @Column({name: 'stock', type: 'int', nullable: false, default: 0})
+    public stock: number
+
     @OneToMany(() => WebshopFileEntity, (file) => file.webshopelement)
     public files: WebshopFileEntity[]
 

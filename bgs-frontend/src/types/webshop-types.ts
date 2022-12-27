@@ -31,6 +31,8 @@ export interface IWebshopItem {
     groupid: number
     description: string
     categoryid: number
+    discount: number | null
+    stock: number
 }
 
 export interface IWebshopItemForm extends IWebshopItem {
@@ -63,6 +65,8 @@ export class EmptyWebshopElement implements IWebshopItem {
     public groupid: number = 0
     public description: string = ''
     public categoryid: number = 0
+    public discount: number | null = null
+    public stock: number = 0
 }
 
 export class EmptyDetailedWebshopItem extends EmptyWebshopElement implements IDetailedWebshopItem {

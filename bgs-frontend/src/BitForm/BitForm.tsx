@@ -1,5 +1,5 @@
 import { BitControl, BitControlGroup, BitControlType, IBitControl } from "./bitform-types";
-import { createSignal, For, Match, Switch } from "solid-js";
+import { createSignal, For, Match, onMount, Switch } from "solid-js";
 import { IJsxElement } from "../types/general-types";
 import { FileInput } from "./FileInput";
 
@@ -45,6 +45,13 @@ export interface IBitControlProps {
 }
 
 export function BitControlElement(props: IBitControlProps): IJsxElement {
+    let controlContainer: HTMLDivElement | undefined
+
+    onMount(() => {
+        if (props.config.suffix) {
+            controlContainer?.querySelector(`[name="${props.config.name}"]`)?.classList.add('withsuffix')
+        }
+    })
 
     function defaultInput(): IJsxElement {
         return (
@@ -53,7 +60,7 @@ export function BitControlElement(props: IBitControlProps): IJsxElement {
     }
 
     return (
-        <div class="d-flex column">
+        <div class="d-flex column" ref={controlContainer}>
             <div class="d-flex">
                 <Switch fallback={defaultInput()}>
                     <Match when={props.config.type == BitControlType.select}>

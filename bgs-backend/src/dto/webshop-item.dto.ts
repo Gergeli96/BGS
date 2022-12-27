@@ -12,6 +12,8 @@ export class WebshopItemDto {
     public categoryid: number = 0
     public files: WebshopFileDto[] = [ ]
     public elementgroup: WebshopItemGroupDto
+    public discount: number | null = 0
+    public stock: number = 0
 
     constructor(entity?: WebshopItemEntity) {
         if (entity) {
@@ -22,6 +24,9 @@ export class WebshopItemDto {
             this.description = entity.description
             this.categoryid = entity.categoryid
             this.design = entity.design
+            this.discount = entity.discount
+            this.stock = entity.stock
+
             if (Array.isArray(entity.files)) {
                 this.files = entity.files.map(file => new WebshopFileDto(file))
             }

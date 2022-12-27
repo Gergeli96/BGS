@@ -92,6 +92,8 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
         entity.description = dto.description
         entity.categoryid = dto.categoryid
         entity.design = dto.design
+        entity.discount = dto.discount
+        entity.stock = dto.stock
 
         return entity
     }

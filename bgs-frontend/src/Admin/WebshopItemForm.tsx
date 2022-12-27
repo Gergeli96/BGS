@@ -14,7 +14,9 @@ export function WebshopItemForm(): IJsxElement {
         {label: 'Kategória', name: 'categoryid', type: BitControlType.select, options: [ ]},
         {label: 'Név', name: 'name'},
         {label: 'Kivitel', name: 'design'},
-        {label: 'Ár', name: 'price', type: BitControlType.number},
+        {label: 'Ár', name: 'price', type: BitControlType.number, suffix: <div class="suffix">Ft</div>},
+        {label: 'Leárazás (kedvezmény)', name: 'discount', type: BitControlType.number, suffix: <div class="suffix">%</div>},
+        {label: 'Készlet', name: 'stock', type: BitControlType.number, suffix: <div class="suffix">Db</div>},
         {label: 'Leírás', name: 'description', type: BitControlType.textarea},
         {label: 'Képek', name: 'files', type: BitControlType.file}
     ])
