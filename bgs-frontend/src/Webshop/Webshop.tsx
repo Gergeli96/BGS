@@ -26,7 +26,7 @@ export function Webshop(): IJsxElement {
     })
 
     function getCategoryIdQuery(): string {
-        return categoryId() == null ? '' : `?groupid=${categoryId()}&t=${Date.parse(new Date() as any)}`
+        return categoryId() == null ? '' : `?categoryid=${categoryId()}&t=${Date.parse(new Date() as any)}`
     }
 
     function changeActiveCategory(categoryId: number): void {

@@ -26,8 +26,8 @@ export class WebshopItemController {
     }
 
     @Get('/detailedlist')
-    public async getDetailedElements(@Query('groupid') groupid?: string): Promise<WebshopItemDto[]> {
-        return await this.service.getDetailedElements(BitNumber.parseInt(groupid))
+    public async getDetailedElements(@Query('categoryid') categoryid?: string): Promise<WebshopItemDto[]> {
+        return await this.service.getDetailedElements(BitNumber.parseInt(categoryid))
     }
 
     @Get('/detailed/:id')

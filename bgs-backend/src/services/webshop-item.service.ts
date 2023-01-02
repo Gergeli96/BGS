@@ -26,11 +26,11 @@ export class WebshopItemService extends BaseEntityService<WebshopItemEntity, Web
         return new WebshopItemDto(element)
     }
 
-    public async getDetailedElements(groupid?: number): Promise<WebshopItemDto[]> {
+    public async getDetailedElements(categoryid?: number): Promise<WebshopItemDto[]> {
         let elements = await this.repository.find({relations: ['files']})
 
-        if (groupid > 0) {
-            elements = elements.filter(el => el.groupid == groupid)
+        if (categoryid > 0) {
+            elements = elements.filter(el => el.categoryid == categoryid)
         }
 
         return elements.map(el => new WebshopItemDto(el))
