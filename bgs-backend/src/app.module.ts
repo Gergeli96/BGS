@@ -1,6 +1,7 @@
 import { ProjectsModule } from './projects/projects.module';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { WebshopModule } from './webshop/webshop.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { DbModule } from './db/db.module';
 
@@ -11,6 +12,8 @@ import { ClientMiddleware } from './middlewares/client.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
+import { SiteInfoEntity } from './db/entities/siteinfo.entity';
+
 @Module({
     imports: [
         ProjectsModule,
@@ -19,7 +22,8 @@ import { join } from 'path';
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'dist/frontend')
         }),
-        AuthModule
+        AuthModule,
+        TypeOrmModule.forFeature([SiteInfoEntity])
     ],
     controllers: [AppController],
     providers: []

@@ -2,6 +2,7 @@ import { FurnitureCategoryForm } from './Admin/FurnitureCategoryForm';
 import { WebshopItemGroupForm } from './Admin/WebshopItemGroupForm';
 import { WebshipItemGroups } from './Admin/WebshopItemGroups';
 import { AuthProvider } from './Authentication/AuthProvider';
+import { Component, createSignal, onMount } from 'solid-js';
 import { WebshopItemForm } from './Admin/WebshopItemForm';
 import { AdminGuard } from './Authentication/AdminGuard';
 import { Notifications } from './shared/Notifications';
@@ -9,7 +10,6 @@ import { EditImages } from './Admin/Images/EditImages';
 import { GalerieDelete } from './Admin/GalerieDelete';
 import { Webshopitems } from './Admin/WebshopItems';
 import { WebshopItem } from './Webshop/WebshopItem';
-import { Component, createSignal } from 'solid-js';
 import { WebshopCart } from './shared/WebshopCart';
 import { GalerieForm } from './Admin/GalerieForm';
 import { EditAccount } from './Admin/EditAccount';
@@ -18,11 +18,25 @@ import { HomePage } from './HomePage/HomePage';
 import { Login } from './Authentication/Login';
 import { Galeries } from './Galerie/Galeries';
 import { Webshop } from './Webshop/Webshop';
+import { Post } from './helpers/http';
 import './App.module.scss';
 
 export const [cart, setCart] = createSignal<number[]>([])
 
 const App: Component = () => {
+    const visitorLocalstorageKey: string = 'VISITORKEY'
+
+    onMount(() => {
+        let visitorDate = localStorage.getItem(visitorLocalstorageKey)
+        const today = new Date()
+        
+        if ((visitorDate === null || visitorDate === undefined) || typeof visitorDate === 'string' && today > new Date(visitorDate)) {
+            Post('app/siteinfo', { }, {showNotification: false})
+                .then(() => localStorage.setItem(visitorLocalstorageKey, `${today.getFullYear()}-${today.getMonth()}-${today.getDate()} 23:59:59`))
+                .catch(error => { })
+        }
+    })
+
     return (
         <AuthProvider>
             <div class="app-container">
