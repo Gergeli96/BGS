@@ -11,6 +11,7 @@ import { Stock } from "../shared/Stock";
 import { cart, setCart } from "../App";
 import { Get } from "../helpers/http";
 import './WebshopItem.scss';
+import { AddToCartButton } from "../shared/AddToCartButton";
 
 export function WebshopItem(): IJsxElement {
     const [item, setItem] = createSignal<IDetailedWebshopItem>(new EmptyDetailedWebshopItem())
@@ -56,8 +57,7 @@ export function WebshopItem(): IJsxElement {
                 <div class="col-12 pt-4">{item()?.description}</div>
                 
                 <div class="col-12 pt-4">
-                    {/* <button class="btn-success" onClick={addToCart}><i class="bi bi-cart mr-1"></i>Kosárba</button> */}
-                    <Stock itemId={item().id as number} stock={item()?.stock}/>
+                    <AddToCartButton itemId={item().id as number} withStock={true} stock={item()?.stock} />
                 </div>
 
                 <Show when={connecting().length > 0}>

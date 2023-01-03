@@ -27,6 +27,11 @@ input:not([type="checkbox"]), select, textarea {
         border-top-right-radius: unset;
         border-right: unset;
     }
+
+    &[disabled] {
+        background: $gray-background2;
+        cursor: not-allowed;
+    }
 }
 
 select {

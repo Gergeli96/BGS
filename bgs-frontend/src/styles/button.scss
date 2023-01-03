@@ -28,6 +28,11 @@
         padding: 0.1rem 0.35rem;
         font-size: 0.8rem;
     }
+
+    &[disabled="true"] {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
 }
 
 .btn-info, .btn-primary {

@@ -10,7 +10,6 @@ export interface IPriceTagProps {
 
 function calculateDiscountedPrice(price: number, discount: number): number {
     const percentage = (100 - discount) / 100
-    console.log(price, discount, percentage)
     return price * percentage
 }
 
