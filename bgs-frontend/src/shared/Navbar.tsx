@@ -1,4 +1,4 @@
-import { navigate } from "../helpers/navigation-helper";
+import { navigate, navigateBack } from "../helpers/navigation-helper";
 import { IJsxElement } from "../types/general-types";
 import { WebshopCartIcon } from "./WebshopCartIcon";
 import { useNavigate } from "@solidjs/router";
@@ -28,6 +28,11 @@ export function Navbar(props: INavbarProps): IJsxElement {
                 <img class="cursor-pointer mr-4" src="/src/assets/bgs-transparent.png" alt="company logo" onClick={() => navigate(navigator, '/')} />
 
                 <i class="bi bi-list cursor-pointer" onClick={toggleSmallView}></i>
+
+                <div class="d-flex cursor-pointer ml-4" onClick={() => navigateBack(navigator)}>
+                    <i class="bi bi-chevron-left white mr-1" style={{'font-size': '1.2rem'}}></i>
+                    <div class="white" style={{'font-size': '1.2rem'}}>Vissza</div>
+                </div>
             </div>
 
             <div class="nav-links d-flex align-center">
