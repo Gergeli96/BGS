@@ -50,6 +50,10 @@
     width: 100%;
 }
 
+.width-available {
+    width: -webkit-fill-available;
+}
+
 .deg-30 {
     transform: rotate(30deg);
 }

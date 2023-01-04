@@ -38,7 +38,7 @@ export function HomePage(): IJsxElement {
             </div>
 
             <div class="home-page-content-container d-flex justify-center">
-                <div class="home-page-content">
+                <div class="home-page-content width-available">
                     <div id="about-us" class="about-us d-flex column align-center">
                         <h3 class="pb-2">Rólunk</h3>
                         <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, ipsam ipsa omnis
