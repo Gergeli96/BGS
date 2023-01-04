@@ -1,11 +1,13 @@
 import { getImageLink } from "../helpers/drive-image-helper";
 import { IJsxElement } from "../types/general-types";
+import { BitNumber } from "../helpers/number-helper";
+import { createEffect, For } from "solid-js";
 import { BitImage } from "./BitImage";
-import { For } from "solid-js";
 import './GaleryCarousel.scss';
 
-export interface IGaleryCarouselImage {
+export interface IGaleryCarouselImage<T = any> {
     url: string
+    data?: T
 }
 
 export class GaleryCarouselImage {
@@ -17,11 +19,16 @@ export class GaleryCarouselImage {
 }
 
 export interface IGaleryCarouselProps {
+    onChange?: (image: IGaleryCarouselImage) => void
     images: IGaleryCarouselImage[]
 }
 
 export function GaleryCarousel(props: IGaleryCarouselProps): IJsxElement {
     let carouselContainer: HTMLDivElement | undefined
+
+    createEffect(() => {
+        if (props.onChange) props.onChange(props.images[0])
+    })
 
     function step(event: Event, direction: 1 | -1): void {
         event.stopPropagation(); event.preventDefault()
@@ -32,6 +39,13 @@ export function GaleryCarousel(props: IGaleryCarouselProps): IJsxElement {
             activeImage?.setAttribute('attr-active', 'false')
             nextImage.setAttribute('attr-active', 'true')
         }
+
+        if (props.onChange) {
+            let index = nextImage?.getAttribute('attr-index')
+            if (index && BitNumber.parseInt(index) as number >= 0) {
+                props.onChange(props.images[BitNumber.parseInt(index) as number])
+            }
+        }
     }
 
     return (
@@ -40,7 +54,7 @@ export function GaleryCarousel(props: IGaleryCarouselProps): IJsxElement {
 
             <div class="galery-images-container d-flex justify-center align-center">
                 <For each={props.images}>{(x, i) =>
-                    <BitImage src={getImageLink(x.url)} attributes={{'attr-active': i() == 0 ? 'true' : 'false'}} />
+                    <BitImage src={getImageLink(x.url)} attributes={{'attr-active': i() == 0 ? 'true' : 'false', 'attr-index': i().toString()}} />
                 }</For>
             </div>
 
